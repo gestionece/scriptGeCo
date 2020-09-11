@@ -1,0 +1,40 @@
+// ==UserScript==
+// @name         StopAlert GeCO
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Evidenzia operatore che non lavora
+// @author       Ruslan Dzyuba(Trorker)
+// @match        https://levrattiweb.brainstorm.it/dashboard/operatori/
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Your code here...
+    function toSeconds(hm) {
+        var a = hm.split(':'); // split it at the colons
+        var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60;
+        return seconds;
+    }
+    function start() {
+        var today = new Date();
+        var time = today.getHours() + ":" + today.getMinutes();
+        var operators = document.querySelector("#table-operatori > table > tbody").childElementCount - 1;
+        var i;
+        for (i = 1; i <= operators; i++) {
+            if (document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-max_time_oggi.numeric") !== null) {
+                var lastTime = document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-max_time_oggi.numeric");
+                var stopS = toSeconds(time) - toSeconds(lastTime.textContent);
+                if (stopS >= 3600) {
+                    lastTime.style.backgroundColor = "red";
+                } else if (stopS >= 1800) {
+                    lastTime.style.backgroundColor = "yellow";
+                } else if (stopS >= 0) {
+                    lastTime.style.backgroundColor = "green";
+                }
+            }
+        }
+    }
+    start();
+})();
