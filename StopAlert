@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         StopAlert GeCO
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/gestionece/scriptGeCo
 // @version      0.1
 // @description  Evidenzia operatore che non lavora
 // @author       Ruslan Dzyuba(Trorker)
