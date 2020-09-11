@@ -1,0 +1,30 @@
+// ==UserScript==
+// @name         TypeCE GeCO
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Evidenzia tipo Contatore
+// @author       Ruslan Dzyuba(Trorker)
+// @match        https://levrattiweb.brainstorm.it/admin/backend/pratica/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Your code here...
+    var operators = document.querySelector("#result_list > tbody").childElementCount;
+    var i;
+    for (i = 1; i <= operators; i++) {
+        var matCE = document.querySelector("#result_list > tbody > tr:nth-child("+ i +") > td.field-codice_ante_sostituzione");
+        var targetCE = document.querySelector("#result_list > tbody > tr:nth-child("+ i +") > td.field-tipo_misuratore");
+        var typeCE = matCE.textContent.substring(4, 5);
+        if(typeCE == 'F') {
+            targetCE.innerHTML = "15/30";
+        } else if(typeCE == 'G') {
+            targetCE.innerHTML = "TF";
+        }else if(typeCE == 'E') {
+            targetCE.innerHTML = "MF";
+        }
+    }
+
+})();
