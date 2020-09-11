@@ -19,7 +19,7 @@
         var targetCE = document.querySelector("#result_list > tbody > tr:nth-child("+ i +") > td.field-tipo_misuratore");
         var typeCE = matCE.textContent.substring(4, 5);
         if(typeCE == 'F') {
-            targetCE.innerHTML = "15/30";
+            targetCE.innerHTML = "15/30 ------------";
         } else if(typeCE == 'G') {
             targetCE.innerHTML = "TF";
         }else if(typeCE == 'E') {
