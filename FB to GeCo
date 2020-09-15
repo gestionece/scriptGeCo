@@ -53,6 +53,8 @@
         var count = document.querySelector("#mapViewOpenLayersPanelmapDiv > div > div.ol-overlaycontainer-stopevent > div.ol-overlay-container.ol-selectable > div > div.ol-popup-content > div").childElementCount;
         if (popup.style.display != "none" && count != lastCuont) {
             addImg();
+        } else {
+            lastCuont = 0;
         }
     }, 100);
 })();
