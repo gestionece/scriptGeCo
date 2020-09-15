@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FB to GeCo
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.1
+// @version      0.2
 // @description  Da FB a GeCo in un click
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeat.enelint.global/geocallfbi/w/Servlet?*
