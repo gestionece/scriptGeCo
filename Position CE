@@ -1,0 +1,23 @@
+// ==UserScript==
+// @name         Position CE
+// @namespace    https://github.com/gestionece/scriptGeCo
+// @version      0.1
+// @description  Posizione del contatore
+// @author       Ruslan Dzyuba(Trorker)
+// @match        https://levrattiweb.brainstorm.it/admin/backend/pratica/*/change/?*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Your code here...
+    var lat = document.querySelector("#pratica_form > div > fieldset:nth-child(10) > div.form-row.field-latitudine > div > div");
+    var lng = document.querySelector("#pratica_form > div > fieldset:nth-child(10) > div.form-row.field-longitudine > div > div");
+
+    var btn = document.createElement("li");
+    btn.innerHTML = '<a href="http://www.google.com/maps/place/' + lat.textContent.replace(",", ".") + ',' + lng.textContent.replace(",", ".") + '" class="historylink" target="_blank">Posizione</a>';
+
+    var contBtn = document.querySelector("#content-main > ul");
+    contBtn.insertBefore(btn, contBtn.childNodes[0]);
+})();
