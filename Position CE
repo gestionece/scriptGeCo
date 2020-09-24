@@ -4,7 +4,7 @@
 // @version      0.2
 // @description  Posizione del contatore
 // @author       Ruslan Dzyuba(Trorker)
-// @match        https://levrattiweb.brainstorm.it/admin/backend/pratica/*/change/?*
+// @match        https://levrattiweb.brainstorm.it/admin/backend/pratica/*/change/*
 // @grant        none
 // ==/UserScript==
 
