@@ -12,8 +12,8 @@
     'use strict';
 
     // Your code here...
-    var lat = document.querySelector("#pratica_form > div > fieldset:nth-child(10) > div.form-row.field-latitudine > div > div");
-    var lng = document.querySelector("#pratica_form > div > fieldset:nth-child(10) > div.form-row.field-longitudine > div > div");
+    var lat = document.querySelector("#pratica_form > div > fieldset:nth-child(9) > div.form-row.field-latitudine > div > div");
+    var lng = document.querySelector("#pratica_form > div > fieldset:nth-child(9) > div.form-row.field-longitudine > div > div");
 
     var btn = document.createElement("li");
     btn.innerHTML = '<a href="http://www.google.com/maps/place/' + lat.textContent.replace(",", ".") + ',' + lng.textContent.replace(",", ".") + '" class="historylink" target="_blank">Posizione</a>';
