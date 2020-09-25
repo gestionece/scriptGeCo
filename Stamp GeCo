@@ -1,0 +1,55 @@
+// ==UserScript==
+// @name         Stamp GeCo
+// @namespace    https://github.com/gestionece/scriptGeCo
+// @version      0.1
+// @description  Toglie delle collone per simplificare la stampa
+// @author       Ruslan Dzyuba(Trorker)
+// @match        https://levrattiweb.brainstorm.it/admin/backend/pratica/*/change/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Your code here...
+    if(window.location.hash == "#simple") {
+        document.querySelector("#result_list > thead > tr > th.sortable.column-stato_esecuzione_display_html").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-tipo_misuratore").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-collocazione_contatore").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-orario_assegnazione").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-lotto").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-contratto").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-data_esecuzione_display").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-data_sopralluogo_display").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-data_sopralluogo_display").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.column-contatore_link").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-codice_ante_sostituzione").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-matricola_ante_sostituzione").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-pod").style.display = "none";
+        document.querySelector("#result_list > thead > tr > th.sortable.column-idrda").style.display = "none";
+
+        var operators = document.querySelector("#result_list > tbody").childElementCount;
+        var i;
+        for (i = 1; i <= operators; i++) {
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-stato_esecuzione_display_html").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-tipo_misuratore").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-collocazione_contatore").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-orario_assegnazione").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-lotto.nowrap").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-contratto.nowrap").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-data_esecuzione_display").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-data_sopralluogo_display").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-contatore_link").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-codice_ante_sostituzione").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-matricola_ante_sostituzione").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-pod").style.display = "none";
+            document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-idrda").style.display = "none";
+        }
+    } else {
+        var btn = document.createElement("li");
+        btn.innerHTML = '<a href="#simple" class="historylink" target="_blank">Stamp</a>';
+
+        var contBtn = document.querySelector("#content-main > ul");
+        contBtn.insertBefore(btn, contBtn.childNodes[0]);
+    }
+})();
