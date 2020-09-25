@@ -47,7 +47,7 @@
         }
     } else {
         var btn = document.createElement("li");
-        btn.innerHTML = '<a href="#simple" class="historylink" target="_blank">Stamp</a>';
+        btn.innerHTML = '<a href="' + window.location.href + '&o=9#simple" class="historylink" target="_blank">Stamp</a>';
 
         var contBtn = document.querySelector("#content-main > ul");
         contBtn.insertBefore(btn, contBtn.childNodes[0]);
