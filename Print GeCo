@@ -13,7 +13,7 @@
 
     // Your code here...
     window.Stampa = function () {
-        window.open(window.location.href,'_self');
+        //window.open(window.location.href + '&o=9#simple','_self');
         var resultList = document.querySelector("#changelist-form > div.results").innerHTML;
         var nameOperators = document.querySelector("#changelist-filter > div:nth-child(4) > div > select").options[document.querySelector("#changelist-filter > div:nth-child(4) > div > select").selectedIndex].textContent;
         var a = window.open('','','width=733,height=454');
@@ -29,7 +29,8 @@
         a.document.close(); // necessary for IE >= 10
         a.focus(); // necessary for IE >= 10*/
 
-        setTimeout(function(){ a.print(); a.close(); }, 500);
+        //window.onload = function() { a.print(); a.close(); };
+        setTimeout(function(){ a.print(); a.close(); }, 600);
     }
 
     if(window.location.hash == "#simple") {
