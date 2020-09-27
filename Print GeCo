@@ -13,11 +13,14 @@
 
     // Your code here...
     window.Stampa = function () {
-        window.open(window.location.href + '&o=9','_self');
+        window.open(window.location.href,'_self');
         var resultList = document.querySelector("#changelist-form > div.results").innerHTML;
+        var nameOperators = document.querySelector("#changelist-filter > div:nth-child(4) > div > select").options[document.querySelector("#changelist-filter > div:nth-child(4) > div > select").selectedIndex].textContent;
         var a = window.open('','','width=733,height=454');
         a.document.open("text/html");
-        a.document.write('<html><head><title>Stampa GeCo</title>');
+        a.document.write('<html><head><title>');
+        a.document.write(nameOperators);
+        a.document.write('</title>');
         a.document.write('<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">');
         a.document.write('<style>body{opacity: 0}@media print { body{opacity: 1}}</style>');
         a.document.write('</head><body style="overflow: hidden;">');
@@ -30,6 +33,8 @@
     }
 
     if(window.location.hash == "#simple") {
+        document.querySelector("#result_list > thead > tr > th.action-checkbox-column").style.opacity = "0";
+
         document.querySelector("#result_list > thead > tr > th.sortable.column-stato_esecuzione_display_html").style.display = "none";
         document.querySelector("#result_list > thead > tr > th.sortable.column-tipo_misuratore").style.display = "none";
         document.querySelector("#result_list > thead > tr > th.sortable.column-collocazione_contatore").style.display = "none";
