@@ -2,7 +2,7 @@
 // @name         StopAlert GeCO
 // @namespace    https://github.com/gestionece/scriptGeCo
 // @version      0.2
-// @description  Evidenzia operatore che non lavora
+// @description  Evidenzia ultimo contatore inserito
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://levrattiweb.brainstorm.it/dashboard/operatori/
 // @grant        none
