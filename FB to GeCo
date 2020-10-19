@@ -4,7 +4,7 @@
 // @version      0.2
 // @description  Da FB a GeCo in un click
 // @author       Ruslan Dzyuba(Trorker)
-// @match        https://it-forcebeat.enelint.global/geocallfbi/w/Servlet?*
+// @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
 // @grant        none
 // ==/UserScript==
 
