@@ -14,7 +14,7 @@
     // Your code here...
     window.downloadMAP = function () {
         function download_csv(data, filename) {
-            var csv = 'ENELTEL,TIPO,NOMINATIVO,TEL,COMUNE,INDIRIZZO,LONGITUDINE,LATITUDINE\n';
+            var csv = 'ENELTEL,TIPO,NOMINATIVO,TEL,COMUNE,INDIRIZZO,LONGITUDINE,LATITUDINE,GeCO\n';
             csv += data;
             var a = document.createElement("a");
             var url = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
@@ -53,7 +53,8 @@
             var city = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-comune").textContent;
             var adress = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-indirizzo").textContent;
 
-            data += eneltel + ',' + typeCE + ',' + name + ',' + tel + ',' + city + ',' + adress + ',' + lng + ',' + lat + "\n";
+            var link = "https://levrattiweb.brainstorm.it/admin/backend/pratica/?q=" + eneltel;
+            data += eneltel + ',' + typeCE + ',' + name + ',' + tel + ',' + city + ',' + adress + ',' + lng + ',' + lat + ',' + link + "\n";
         }
 
         setTimeout(function(){
