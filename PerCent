@@ -1,0 +1,122 @@
+// ==UserScript==
+// @name         PerCent
+// @namespace    https://github.com/gestionece/scriptGeCo
+// @version      0.1
+// @description  try to take over the world!
+// @author       Ruslan Dzyuba(Trorker)
+// @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Your code here...
+
+    var Result = false;
+
+    var regexCont = /Contratto:\s\d{10}/gm;
+    var regexLCL = /LCL:\s\d{10}/gm;
+    setInterval(function(){
+        var idLCL = document.querySelector("div[id^='AFRAME_']");
+        if (idLCL != null) {
+            var dataLCL = idLCL.querySelector("tr:nth-child(1) > td > div > div.left.summaryContainer.filledFieldsSummaryContainer > span");
+            if(Result == false && dataLCL != null) {
+                Result = true;
+                dataLCL = dataLCL.textContent;
+
+                if (regexCont.test(dataLCL) && regexLCL.test(dataLCL)) {
+
+                    var contrattoName = /Contratto:\s\d{10}/gm.exec(dataLCL)[0];
+                    var lclName = /LCL:\s\d{10}/gm.exec(dataLCL)[0];
+
+                    var CONTRATTO = contrattoName.substr(contrattoName.length - 10);
+                    var LCL = lclName.substr(lclName.length - 10);
+                    var CON = idLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td:nth-child(2)");
+                    var AV = idLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td:nth-child(3)");
+                    var TOT = idLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td.tvCell.tvCellGray");
+                    if (CON != null && AV != null && TOT != null) {
+                        CON = CON.textContent;
+                        AV = AV.textContent;
+                        TOT = TOT.textContent;
+
+                        //console.log(CONTRATTO);
+                        //console.log(LCL);
+                        //console.log(CON);
+                        //console.log(AV);
+                        //console.log(TOT);
+
+                        let lcl = [{
+                            "LCL": LCL,
+                            "Date": new Date(),
+                            "TOT": 50,
+                            "CON": CON,
+                            "AV": AV
+                        }];
+
+
+                        if (localStorage.getItem(CONTRATTO) != null) {
+                            var Cn = JSON.parse(localStorage.getItem(CONTRATTO));
+                            var count = Object.keys(Cn).length
+                            var LCLexist = false;
+                            for (let i = 0; i < count; i++) {
+                                if (Cn[i].LCL == LCL) {
+                                    LCLexist = true;
+
+                                    if (Cn[i].TOT != TOT || Cn[i].CON != CON || Cn[i].AV != AV) {
+                                        Cn[i].TOT = TOT;
+                                        Cn[i].CON = CON;
+                                        Cn[i].AV = AV;
+
+                                        localStorage.setItem(CONTRATTO, JSON.stringify(Cn));
+                                        console.log("[!] update LCL");
+                                    }
+
+                                }
+                            }
+                            if (LCLexist == false) {
+                                LCLexist = false;
+                                let lclNew = {
+                                    "LCL": LCL,
+                                    "Date": new Date(),
+                                    "TOT": TOT,
+                                    "CON": CON,
+                                    "AV": AV
+                                };
+                                Cn.push(lclNew)
+                                localStorage.setItem(CONTRATTO, JSON.stringify(Cn));
+                                console.log("[!] add LCL");
+                            }
+                        } else {
+                            localStorage.setItem(CONTRATTO, JSON.stringify(lcl));
+                            console.log("[!] add CONTRATTO");
+                        }
+
+                        //localStorage.setItem(CONTRATTO, JSON.stringify(lcl));
+
+                        console.log(localStorage);
+                        //console.log(JSON.parse(localStorage.getItem(CONTRATTO)));
+                    }
+                }
+            }
+
+
+
+            //var lcl = dataLCL.querySelector("tr:nth-child(4) > td:nth-child(5) > table > tbody > tr > td.arrangingInteraction > table > tbody > tr > td > input").value
+            //var contratto = dataLCL.querySelector("tr:nth-child(4) > td:nth-child(3) > table > tbody > tr > td.arrangingInteraction > select").options[dataLCL.querySelector("tr:nth-child(4) > td:nth-child(3) > table > tbody > tr > td.arrangingInteraction > select").selectedIndex].textContent;
+            //var CON = dataLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td:nth-child(2)").textContent;
+            //var AV = dataLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td:nth-child(3)").textContent;
+            //var TOT = dataLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td.tvCell.tvCellGray").textContent;
+            //if (ResultLCL != lcl) {
+            //ResultLCL = lcl;
+            //console.log(contratto);
+            //console.log(lcl);
+            //console.log(CON);
+            //console.log(AV);
+            //console.log(TOT);
+            //}
+        } else {
+            //ResultExist = false;
+        }
+    }, 100);
+})();
