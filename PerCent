@@ -13,13 +13,35 @@
 
     // Your code here...
 
-    var Result = false;
+    window.PerCent = function (doc) {
+        //<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> add to <head>
+        document.body.innerHTML = '<div style="position:absolute;width:100%;height:100%;opacity:1;z-index:100;background:#444;">  <iframe id="if-PerCent" src="http://127.0.0.1:5500/index.html" width="100%" height="100%" frameborder="0"></iframe></div>' + document.body.innerHTML;
 
+        doc.getElementById("if-PerCent").contentWindow.postMessage(JSON.stringify(localStorage), "*");
+    }
+
+    var Result = false;
     var regexCont = /Contratto:\s\d{10}/gm;
     var regexLCL = /LCL:\s\d{10}/gm;
     setInterval(function(){
         var idLCL = document.querySelector("div[id^='AFRAME_']");
         if (idLCL != null) {
+
+
+
+            if (document.querySelector("#btnPerCent") == null) {
+                var btn = document.createElement("button");
+                btn.setAttribute("type", "BUTTON");
+                btn.setAttribute("onclick", 'javascript:PerCent(document); console.log(window)');
+                btn.setAttribute("id", "btnPerCent");
+                btn.setAttribute("class", "but "); /*butRO <-- add class disable btn*/
+                btn.innerHTML = '<div>PerCent</div>';
+
+                var contBtn = document.querySelectorAll("div[id^='AFRAME_'].taskBoxContainer")[1];
+                contBtn.insertBefore(btn, contBtn.childNodes[0]);
+            }
+
+
             var dataLCL = idLCL.querySelector("tr:nth-child(1) > td > div > div.left.summaryContainer.filledFieldsSummaryContainer > span");
             if(Result == false && dataLCL != null) {
                 Result = true;
