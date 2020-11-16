@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.2
+// @version      0.1
 // @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
@@ -79,8 +79,10 @@
 
                         var perCent = ((CON * 100) / (TOT - AV)).toFixed(2);
                         var sti92 = (((92 * (TOT - AV) / 100) - CON)  + 1 ).toFixed(0);
+                        var sti96 = (((96 * (TOT - AV) / 100) - CON)  + 1 ).toFixed(0);
                         if (sti92 <= 0) sti92 = "DIREI CHE SEI GIA A 92%"
-                        alert("CONTRATTO: " + CONTRATTO + "\n" + "LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
+                        if (sti96 <= 0) sti96 = "Siamo al PREMIO"
+                        alert("CONTRATTO: " + CONTRATTO + "\n" + "LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE" + "\n" + "Per arrivare al 96% sevono: " + sti96 + "CE");
 
                         if (localStorage.getItem(CONTRATTO) != null) {
                             var Cn = JSON.parse(localStorage.getItem(CONTRATTO));
