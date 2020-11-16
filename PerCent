@@ -2,7 +2,7 @@
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
 // @version      0.1
-// @description  try to take over the world!
+// @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
 // @grant        none
@@ -77,6 +77,11 @@
                         }];
 
 
+                        var perCent = ((CON * 100) / (TOT - AV)).toFixed(2);
+                        var sti92 = (((92 * (TOT - AV) / 100) - CON)  + 1 ).toFixed(0);
+                        if (sti92 > 0) sti92 = "DIREI CHE SEI GIA A 92%"
+                        alert("CONTRATTO: " + CONTRATTO + "\n" + "LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
+
                         if (localStorage.getItem(CONTRATTO) != null) {
                             var Cn = JSON.parse(localStorage.getItem(CONTRATTO));
                             var count = Object.keys(Cn).length
@@ -91,6 +96,7 @@
                                         Cn[i].AV = AV;
 
                                         localStorage.setItem(CONTRATTO, JSON.stringify(Cn));
+                                        //alert("update CONTRATTO: " + CONTRATTO + "\n" + "update LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
                                         console.log("[!] update LCL");
                                     }
 
@@ -107,10 +113,12 @@
                                 };
                                 Cn.push(lclNew)
                                 localStorage.setItem(CONTRATTO, JSON.stringify(Cn));
+                                //alert("update CONTRATTO: " + CONTRATTO + "\n" + "add LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
                                 console.log("[!] add LCL");
                             }
                         } else {
                             localStorage.setItem(CONTRATTO, JSON.stringify(lcl));
+                            //alert("add CONTRATTO: " + CONTRATTO + "\n" + "add LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
                             console.log("[!] add CONTRATTO");
                         }
 
