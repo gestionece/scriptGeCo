@@ -79,7 +79,7 @@
 
                         var perCent = ((CON * 100) / (TOT - AV)).toFixed(2);
                         var sti92 = (((92 * (TOT - AV) / 100) - CON)  + 1 ).toFixed(0);
-                        if (sti92 > 0) sti92 = "DIREI CHE SEI GIA A 92%"
+                        if (sti92 <= 0) sti92 = "DIREI CHE SEI GIA A 92%"
                         alert("CONTRATTO: " + CONTRATTO + "\n" + "LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
 
                         if (localStorage.getItem(CONTRATTO) != null) {
