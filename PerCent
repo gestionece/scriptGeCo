@@ -53,6 +53,8 @@
                 var perCent = ((Cn[j].CON * 100) / (Cn[j].TOT - Cn[j].AV)).toFixed(2);
                 var sti92 = (((92 * (Cn[j].TOT - Cn[j].AV) / 100) - Cn[j].CON) + 1).toFixed(0);
                 var sti96 = (((96 * (Cn[j].TOT - Cn[j].AV) / 100) - Cn[j].CON) + 1).toFixed(0);
+                if (sti92 <= 0) sti92 = "OK";
+                if (sti96 <= 0) sti96 = "OK";
                 row.innerHTML = "<td>" + Cn[j].LCL + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td>" + sti92 + "</td>" + "<td>" + sti96 + "</td>";
                 divObject.querySelector("#lclPerCent").appendChild(row);
             }
