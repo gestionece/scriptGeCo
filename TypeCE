@@ -4,7 +4,7 @@
 // @version      0.3
 // @description  Toglie delle collone per simplificare la stampa
 // @author       Ruslan Dzyuba(Trorker)
-// @match        https://levrattiweb.brainstorm.it/admin/backend/pratica/?*
+// @match        https://geco.impresalevratti.it/admin/backend/pratica/?*
 // @grant        none
 // ==/UserScript==
 
