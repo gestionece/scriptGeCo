@@ -53,7 +53,7 @@
             var city = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-comune").textContent;
             var adress = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-indirizzo").textContent;
 
-            var link = "https://levrattiweb.brainstorm.it/admin/backend/pratica/?q=" + eneltel;
+            var link = "https://geco.impresalevratti.it/admin/backend/pratica/?q=" + eneltel;
             data += eneltel + ',' + typeCE + ',' + name + ',' + tel + ',' + city + ',' + adress + ',' + lng + ',' + lat + ',' + link + "\n";
         }
 
