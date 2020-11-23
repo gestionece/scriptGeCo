@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Export EnelTel GeCo
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.1
+// @version      0.2
 // @description  Esporta i EnelTel selezionati
 // @author       Ruslan Dzyuba(Trorker)
-// @match        https://levrattiweb.brainstorm.it/admin/backend/pratica/?*
+// @match        https://geco.impresalevratti.it/admin/backend/pratica/?*
 // @grant        none
 // ==/UserScript==
 
