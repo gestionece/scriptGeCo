@@ -42,7 +42,7 @@
         for (i = 1; i <= operators; i++) {
             var idE = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.action-checkbox > input").value;
             var htmlObject = document.createElement('html');
-            htmlObject.innerHTML = httpGet("https://levrattiweb.brainstorm.it/admin/backend/pratica/" + idE + "/change/");
+            htmlObject.innerHTML = httpGet("https://geco.impresalevratti.it/admin/backend/pratica/" + idE + "/change/");
             var lat = htmlObject.querySelector("#pratica_form > div > fieldset:nth-child(6) > div.form-row.field-latitudine.field-longitudine > div.fieldBox.field-latitudine > div").textContent.replace(",", ".");
             var lng = htmlObject.querySelector("#pratica_form > div > fieldset:nth-child(6) > div.form-row.field-latitudine.field-longitudine > div.fieldBox.field-longitudine > div").textContent.replace(",", ".");
 
