@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.1
+// @version      0.2
 // @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
@@ -14,10 +14,69 @@
     // Your code here...
 
     window.PerCent = function (doc) {
-        //<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> add to <head>
-        document.body.innerHTML = '<div style="position:absolute;width:100%;height:100%;opacity:1;z-index:100;background:#444;">  <iframe id="if-PerCent" src="http://127.0.0.1:5500/index.html" width="100%" height="100%" frameborder="0"></iframe></div>' + document.body.innerHTML;
+        var body = '<div id="tabPerCent" class="w3-white" style="position:absolute;width:100%;height:100%;opacity:1;z-index:100;"><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><!--<script src="https://www.w3schools.com/lib/w3.js"></script>--><div id="selectCN" class="w3-container"><div class="w3-row w3-margin-top w3-margin-bottom"><div class="w3-col m3"><p></p></div><div class="w3-col m6"><h2>Contratto</h2><p><i>Elimina il contratto, premendo su "x":</i></p><div class="w3-col w3-center w3-margin-bottom"><ul id="addListCN" class="w3-ul w3-card-4"><!-- Injection JavaScript --></ul></div><p id="txtRemoveList" class="w3-margin-top" style="display: none;"><i>Agiungi il contratto, premendosu "+":</i></p><div class="w3-col w3-center w3-margin-bottom"><ul id="removeListCN" class="w3-ul w3-card-4"><!-- Injection JavaScript --></ul></div><div class="w3-bar"><button class="w3-button w3-left w3-light-grey"onclick="document.querySelector(\'#tabPerCent\').remove();">&laquo; Back</button><button class="w3-button w3-right w3-green" onclick="calcPerCent();">Next&raquo;</button></div></div><div class="w3-col m3"><p></p></div></div></div><div id="perCentTab" class="w3-container" style="display: none;"><div class="w3-row w3-margin-top w3-margin-bottom"><div class="w3-col m3"><p></p></div><div class="w3-col m6"><div id="listCnLCL" class="w3-center"><!-- Injection JavaScript --></div><div class="w3-bar"><button class="w3-button w3-left w3-light-grey"onclick="clearAll();">&laquo; Back</button><button class="w3-button w3-right w3-green">Stamp&raquo;</button></div></div><div class="w3-col m3"><p></p></div></div></div></div>';
+        document.body.innerHTML = body + document.body.innerHTML;
 
-        doc.getElementById("if-PerCent").contentWindow.postMessage(JSON.stringify(localStorage), "*");
+        load();
+    }
+
+    window.load = function () {
+        var Cn = localStorage;
+        for (let i = 0; i < localStorage.length; i++) {
+            var element = document.createElement("li");
+            element.classList.add("w3-display-container");
+            element.innerHTML = '<b>' + localStorage.key(i) + '</b><i class="w3-tiny"> (update 3 day ago)</i><span onclick="changeCN(this.parentElement)" class="w3-button w3-transparent w3-display-right">&times;</span>';
+            document.querySelector("#addListCN").appendChild(element);
+        }
+    }
+
+    window.clearAll = function () {
+        document.querySelector("#listCnLCL").innerHTML = "";
+        document.querySelector("#selectCN").style.display = "block";
+        document.querySelector("#perCentTab").style.display = "none";
+    }
+
+    window.calcPerCent = function () {
+        var CnList = document.querySelector("#addListCN").children;
+
+        for (let i = 0; i < CnList.length; i++) {
+
+            var divObject = document.createElement('div');
+            divObject.classList.add("w3-containery");
+            divObject.classList.add("w3-light-grey");
+            divObject.innerHTML = '<h2>' + CnList[i].firstChild.textContent + '</h2><table id="lclPerCent" class="w3-table-all w3-hoverable w3-margin-bottom"><thead><tr class="w3-green"><th>LCL</th><th>CON</th><th>AVV</th><th>TOT</th><th>%</th><th>92%</th><th>96%</th></tr></thead><!-- Injection JavaScript --></table>';
+
+            var Cn = JSON.parse(localStorage.getItem(CnList[i].firstChild.textContent));
+            var count = Object.keys(Cn).length
+            for (let j = 0; j < count; j++) {
+                var row = document.createElement("tr");
+                var perCent = ((Cn[j].CON * 100) / (Cn[j].TOT - Cn[j].AV)).toFixed(2);
+                var sti92 = (((92 * (Cn[j].TOT - Cn[j].AV) / 100) - Cn[j].CON) + 1).toFixed(0);
+                var sti96 = (((96 * (Cn[j].TOT - Cn[j].AV) / 100) - Cn[j].CON) + 1).toFixed(0);
+                row.innerHTML = "<td>" + Cn[j].LCL + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td>" + sti92 + "</td>" + "<td>" + sti96 + "</td>";
+                divObject.querySelector("#lclPerCent").appendChild(row);
+            }
+            document.querySelector("#listCnLCL").appendChild(divObject);
+        }
+
+        document.querySelector("#selectCN").style.display = "none";
+        document.querySelector("#perCentTab").style.display = "block";
+    }
+
+    window.changeCN = function (element) {
+        if (element.parentElement.id == "addListCN" && document.querySelector('#addListCN').children.length > 1) {
+            element.lastChild.innerHTML = "&plus;";
+            document.querySelector("#removeListCN").appendChild(element);
+        } else if (element.parentElement.id == "removeListCN") {
+            element.lastChild.innerHTML = "&times;";
+            document.querySelector("#addListCN").appendChild(element);
+        }
+
+        if (document.querySelector('#removeListCN').children.length > 0) {
+            document.querySelector("#txtRemoveList").style.display = "block";
+        } else {
+            document.querySelector("#txtRemoveList").style.display = "none";
+        }
     }
 
     var Result = false;
@@ -34,7 +93,7 @@
                 btn.setAttribute("type", "BUTTON");
                 btn.setAttribute("onclick", 'javascript:PerCent(document); console.log(window)');
                 btn.setAttribute("id", "btnPerCent");
-                btn.setAttribute("class", "but "); /*butRO <-- add class disable btn*/
+                btn.setAttribute("class", "but "); /butRO <-- add class disable btn/
                 btn.innerHTML = '<div>PerCent</div>';
 
                 var contBtn = document.querySelectorAll("div[id^='AFRAME_'].taskBoxContainer")[1];
@@ -62,12 +121,6 @@
                         AV = AV.textContent;
                         TOT = TOT.textContent;
 
-                        //console.log(CONTRATTO);
-                        //console.log(LCL);
-                        //console.log(CON);
-                        //console.log(AV);
-                        //console.log(TOT);
-
                         let lcl = [{
                             "LCL": LCL,
                             "Date": new Date(),
@@ -78,11 +131,11 @@
 
 
                         var perCent = ((CON * 100) / (TOT - AV)).toFixed(2);
-                        var sti92 = (((92 * (TOT - AV) / 100) - CON)  + 1 ).toFixed(0);
-                        var sti96 = (((96 * (TOT - AV) / 100) - CON)  + 1 ).toFixed(0);
+                        var sti92 = (((92 * (TOT - AV) / 100) - CON) + 1 ).toFixed(0);
+                        var sti96 = (((96 * (TOT - AV) / 100) - CON) + 1 ).toFixed(0);
                         if (sti92 <= 0) sti92 = "DIREI CHE SEI GIA A 92%"
                         if (sti96 <= 0) sti96 = "Siamo al PREMIO"
-                        alert("CONTRATTO: " + CONTRATTO + "\n" + "LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE" + "\n" + "Per arrivare al 96% sevono: " + sti96 + "CE");
+                        //alert("CONTRATTO: " + CONTRATTO + "\n" + "LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE" + "\n" + "Per arrivare al 96% sevono: " + sti96 + "CE");
 
                         if (localStorage.getItem(CONTRATTO) != null) {
                             var Cn = JSON.parse(localStorage.getItem(CONTRATTO));
@@ -131,22 +184,6 @@
                     }
                 }
             }
-
-
-
-            //var lcl = dataLCL.querySelector("tr:nth-child(4) > td:nth-child(5) > table > tbody > tr > td.arrangingInteraction > table > tbody > tr > td > input").value
-            //var contratto = dataLCL.querySelector("tr:nth-child(4) > td:nth-child(3) > table > tbody > tr > td.arrangingInteraction > select").options[dataLCL.querySelector("tr:nth-child(4) > td:nth-child(3) > table > tbody > tr > td.arrangingInteraction > select").selectedIndex].textContent;
-            //var CON = dataLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td:nth-child(2)").textContent;
-            //var AV = dataLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td:nth-child(3)").textContent;
-            //var TOT = dataLCL.querySelector("div > div > div > table > tbody > tr.tvRow.tvRowOdd > td.tvCell.tvCellGray").textContent;
-            //if (ResultLCL != lcl) {
-            //ResultLCL = lcl;
-            //console.log(contratto);
-            //console.log(lcl);
-            //console.log(CON);
-            //console.log(AV);
-            //console.log(TOT);
-            //}
         } else {
             //ResultExist = false;
         }
