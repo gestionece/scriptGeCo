@@ -160,7 +160,7 @@
                         var sti96 = (((96 * (TOT - AV) / 100) - CON) + 1 ).toFixed(0);
                         if (sti92 <= 0) sti92 = "DIREI CHE SEI GIA A 92%"
                         if (sti96 <= 0) sti96 = "Siamo al PREMIO"
-                        //alert("CONTRATTO: " + CONTRATTO + "\n" + "LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE" + "\n" + "Per arrivare al 96% sevono: " + sti96 + "CE");
+                        alert("CONTRATTO: " + CONTRATTO + "\n" + "LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE" + "\n" + "Per arrivare al 96% sevono: " + sti96 + "CE");
 
                         if (localStorage.getItem(CONTRATTO) != null) {
                             var Cn = JSON.parse(localStorage.getItem(CONTRATTO));
