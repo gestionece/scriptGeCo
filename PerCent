@@ -23,10 +23,13 @@
     window.load = function () {
         var Cn = localStorage;
         for (let i = 0; i < localStorage.length; i++) {
-            var element = document.createElement("li");
-            element.classList.add("w3-display-container");
-            element.innerHTML = '<b>' + localStorage.key(i) + '</b><i class="w3-tiny"> (update 3 day ago)</i><span onclick="changeCN(this.parentElement)" class="w3-button w3-transparent w3-display-right">&times;</span>';
-            document.querySelector("#addListCN").appendChild(element);
+            if (/\d{10}/gm.test(localStorage.key(i)))
+            {
+                var element = document.createElement("li");
+                element.classList.add("w3-display-container");
+                element.innerHTML = '<b>' + localStorage.key(i) + '</b><i class="w3-tiny"> (update 3 day ago)</i><span onclick="changeCN(this.parentElement)" class="w3-button w3-transparent w3-display-right">&times;</span>';
+                document.querySelector("#addListCN").appendChild(element);
+            }
         }
     }
 
@@ -40,7 +43,6 @@
         var CnList = document.querySelector("#addListCN").children;
 
         for (let i = 0; i < CnList.length; i++) {
-
             var divObject = document.createElement('div');
             divObject.classList.add("w3-containery");
             divObject.classList.add("w3-light-grey");
