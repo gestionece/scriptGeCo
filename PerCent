@@ -149,7 +149,7 @@
                         let lcl = [{
                             "LCL": LCL,
                             "Date": new Date(),
-                            "TOT": 50,
+                            "TOT": TOT,
                             "CON": CON,
                             "AV": AV
                         }];
