@@ -112,23 +112,23 @@
                                 document.querySelector("#removeListCN").innerHTML = "";
 
                                 if (localStorage.getItem("PerCent")) {
-                                    var Cn = JSON.parse(localStorage.getItem("PerCent"));
+                                    var CnLoad = JSON.parse(localStorage.getItem("PerCent"));
 
                                     if (Cn.length > 0) {
-                                        for (let i = 0; i < Cn.length; i++) {
+                                        for (let i = 0; i < CnLoad.length; i++) {
                                             var CNexist = false;
                                             for (let j = 0; j < document.querySelector("#addListCN").childElementCount; j++) {
-                                                if (document.querySelector("#addListCN").children[j].id == Cn[i].CN) {
+                                                if (document.querySelector("#addListCN").children[j].id == CnLoad[i].CN) {
                                                     CNexist = true;
                                                 }
                                             }
 
                                             if (CNexist == false) {
-                                                var element = document.createElement("li");
-                                                element.classList.add("w3-display-container"); //<i class="w3-tiny"> (update 3 day ago)</i>
-                                                element.id = Cn[i].CN;
-                                                element.innerHTML = '<b>' + Cn[i].CN + '</b><span onclick="changeCN(this.parentElement)" class="w3-button w3-transparent w3-display-right">&times;</span>';
-                                                document.querySelector("#addListCN").appendChild(element);
+                                                var elementLoad = document.createElement("li");
+                                                elementLoad.classList.add("w3-display-container"); //<i class="w3-tiny"> (update 3 day ago)</i>
+                                                elementLoad.id = CnLoad[i].CN;
+                                                elementLoad.innerHTML = '<b>' + CnLoad[i].CN + '</b><span onclick="changeCN(this.parentElement)" class="w3-button w3-transparent w3-display-right">&times;</span>';
+                                                document.querySelector("#addListCN").appendChild(elementLoad);
                                             }
                                         }
                                     }
