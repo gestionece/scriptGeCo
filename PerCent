@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.2
+// @version      0.3
 // @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
