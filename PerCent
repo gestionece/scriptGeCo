@@ -207,7 +207,7 @@
         a.document.write('<style>body{opacity: 0}@media print { body{opacity: 1}}</style>');
         a.document.write('</head><body style="overflow: hidden;">');
         a.document.write(resultList);
-        a.document.write("</body<!--Errore per colpa di LiveServer-->></html>");
+        a.document.write("</body></html>");
 
         a.document.close(); // necessary for IE >= 10
         a.focus(); // necessary for IE >= 10*/
