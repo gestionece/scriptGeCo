@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.3
+// @version      0.4
 // @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
@@ -311,6 +311,8 @@
                                         Cn[i].TOT = TOT;
                                         Cn[i].CON = CON;
                                         Cn[i].AV = AV;
+
+                                        Cn[i].Date = new Date();
 
                                         localStorage.setItem("PerCent", JSON.stringify(Cn));
                                         //alert("update CONTRATTO: " + CONTRATTO + "\n" + "update LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
