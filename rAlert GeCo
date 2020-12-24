@@ -43,35 +43,35 @@
                 break;
             case "8400150707":
                 url = url1 + ferrara + url2;
-                urlc = url1c + parma + url2c;
+                urlc = url1c + ferrara + url2c;
                 break;
             case "8400141787":
                 url = url1 + firenze + url2;
-                urlc = url1c + parma + url2c;
+                urlc = url1c + firenze + url2c;
                 break;
             case "8400124337":
                 url = url1 + modena + url2;
-                urlc = url1c + parma + url2c;
+                urlc = url1c + modena + url2c;
                 break;
             case "8400118979":
                 url = url1 + rovigo + url2;
-                urlc = url1c + parma + url2c;
+                urlc = url1c + rovigo + url2c;
                 break;
             case "8400141790":
                 url = url1 + vicenza + url2;
-                urlc = url1c + parma + url2c;
+                urlc = url1c + vicenza + url2c;
                 break;
             case "8400149736":
                 url = url1 + mantova + url2;
-                urlc = url1c + parma + url2c;
+                urlc = url1c + mantova + url2c;
                 break;
             case "8400149816":
                 url = url1 + padova + url2;
-                urlc = url1c + parma + url2c;
+                urlc = url1c + padova + url2c;
                 break;
             case "8400151041":
                 url = url1 + reggio + url2;
-                urlc = url1c + parma + url2c;
+                urlc = url1c + reggio + url2c;
                 break;
             case "":
                 url = 'https://geco.impresalevratti.it/admin/backend/reso/?data_consegna__isnull=True&o=-5.-8&pratica__stato_esecuzione__exact=2';
