@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         rAlert GeCo
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    https://github.com/gestionece/scriptGeCo
+// @version      0.2
 // @description  Link diretto per Admin
-// @author       You
+// @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/dashboard/storico-contratti/*
 // @grant        none
 // ==/UserScript==
@@ -32,6 +32,7 @@
     var i;
     for (i = 1; i <= lenghtRow; i++) {
         var rAlert = document.querySelector("#table-contratti > tbody > tr:nth-child(" + i + ") > td.field-resi_in_alert.enhanced.bold.alert.numeric");
+        var RConsegna = document.querySelector("#table-contratti > tbody > tr:nth-child(" + i + ") > td.field-resi_in_consegna.enhanced.bold.numeric")
         var cGiac = document.querySelector("#table-contratti > tbody > tr:nth-child(" + i + ") > td.field-contatori_in_giacenza.enhanced.bold.numeric");
         var nContratto = document.querySelector("#table-contratti > tbody > tr:nth-child(" + i + ") > td.field-codice.bold").textContent;
         var url;
@@ -81,6 +82,9 @@
 
         if (rAlert.textContent !== "0") {
             rAlert.innerHTML = '<a href="' + url + '" style="color: red;" target="_blank">' + rAlert.textContent + '</a>';
+        }
+        if (RConsegna.textContent !== "0") {
+            RConsegna.innerHTML = '<a href="' + url + '" style="color: black;" target="_blank">' + RConsegna.textContent + '</a>';
         }
         if (cGiac.textContent !== "0") {
             cGiac.innerHTML = '<a href="' + urlc + '" style="color: black;" target="_blank">' + cGiac.textContent + '</a>';
