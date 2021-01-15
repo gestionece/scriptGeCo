@@ -117,7 +117,7 @@
                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                     var dataHtml = "";
                     if (diffDays > 0) {
-                        dataHtml = '<i class="w3-tiny noStamp">' + diffDays + 'gg</i>';
+                        dataHtml = '<i class="w3-tiny">' + diffDays + 'gg</i>'; //noStamp
                     }
 
                     row.innerHTML = "<td>" + Cn[j].Label + "</td>" + "<td>" + Cn[j].LCL + typeHtml + "</td>" + "<td>" + convertDate(Cn[j].DateF) + dataHtml + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td>" + sti92 + "</td>" + "<td>" + sti96 + "</td>";
