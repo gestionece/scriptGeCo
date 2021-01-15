@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.5
+// @version      0.6
 // @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
@@ -14,7 +14,7 @@
     // Your code here...
 
     window.PerCent = function (doc) {
-        var body = '<div id="tabPerCent" class="w3-white" style="position:absolute;width:100%;height:100%;opacity:1;z-index:100;"><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><!--<script src="https://www.w3schools.com/lib/w3.js"></script>--><div id="startPage" class="w3-container"><div class="w3-row w3-margin-top w3-margin-bottom"><div class="w3-col m3"><p></p></div><div class="w3-col m6"><h2 id="pharStartPage">Ehhi non ti dimentichi nulla</h2><p id="txtStartPage"><i>Per far funzionare questo bellisimo e utile script devi aggiungere LCL che ti interessano. Per farlo devi andare in "Controllo attività" -> "Riapilogo attività" e fare la ricerca di ogni LCL interressata.</i></p><div class="w3-bar"><button class="w3-button w3-dark-grey"onclick="document.querySelector(\'#tabPerCent\').remove();">&laquo; Close</button></div></div><div class="w3-col m3"><p></p></div></div></div><div id="selectCN" class="w3-container" style="display: none;"><div class="w3-row w3-margin-top w3-margin-bottom"><div class="w3-col m3"><p></p></div><div class="w3-col m6"><h2>Contratto</h2><p><i>Elimina il contratto, premendo su "x":</i></p><div class="w3-col w3-center w3-margin-bottom"><ul id="addListCN" class="w3-ul w3-card-4"><!-- Injection JavaScript --></ul></div><p id="txtRemoveList" class="w3-margin-top" style="display: none;"><i>Agiungi il contratto, premendosu "+":</i></p><div class="w3-col w3-center w3-margin-bottom"><ul id="removeListCN" class="w3-ul w3-card-4"><!-- Injection JavaScript --></ul></div><div class="w3-bar"><button class="w3-button w3-left w3-dark-grey"onclick="document.querySelector(\'#tabPerCent\').remove();">&laquo; Close</button><button class="w3-button w3-left w3-light-grey" onclick="options();">Options</button><button class="w3-button w3-right w3-green" onclick="calcPerCent();">Next&raquo;</button></div></div><div class="w3-col m3"><p></p></div></div></div><div id="perCentTab" class="w3-container w3-padding-64" style="display: none;"><div class="w3-row w3-margin-top"><div class="w3-col m3"><p></p></div><div class="w3-col m6"><div id="listCnLCL" class="w3-center"><!-- Injection JavaScript --></div><style>@media print {.noStamp {opacity: 0;display: none;}}</style><div class="w3-bar noStamp"><button class="w3-button w3-left w3-dark-grey" onclick="clearAll();">&laquo; Back</button><button class="w3-button w3-right w3-green" onclick="Print();">Print&raquo;</button></div></div><div class="w3-col m3"><p></p></div></div></div><div id="optionsTab" class="w3-container" style="display: none;"><div class="w3-row w3-margin-top w3-margin-bottom"><div class="w3-col m3"><p></p></div><div class="w3-col m6"><div id="optionsList" class="w3-col w3-margin-bottom"><!-- Injection JavaScript --></div><div class="w3-bar noStamp"><button class="w3-button w3-left w3-dark-grey" onclick="clearAll();">&laquo; Back</button></div><div class="w3-col m3"><p></p></div></div></div></div></div>';
+        var body = '<div id="tabPerCent" class="w3-white" style="position:absolute;width:100%;height:100%;opacity:1;z-index:100;"> <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!--<script src="https://www.w3schools.com/lib/w3.js"></script>--> <div id="startPage" class="w3-container"> <div class="w3-row w3-margin-top w3-margin-bottom"> <div class="w3-col m3"> <p></p> </div> <div class="w3-col m6"> <h2 id="pharStartPage">Ehhi non ti dimentichi nulla</h2> <p id="txtStartPage"><i>Per far funzionare questo bellisimo e utile script devi aggiungere LCL che ti interessano. Per farlo devi andare in "Controllo attività" -> "Riapilogo attività" e fare la ricerca di ogni LCL interressata.</i></p> <div class="w3-bar"><button class="w3-button w3-dark-grey" onclick="document.querySelector(\'#tabPerCent\').remove();">&laquo; Close</button></div> </div> <div class="w3-col m3"> <p></p> </div> </div> </div> <div id="selectCN" class="w3-container" style="display: none;"> <div class="w3-row w3-margin-top w3-margin-bottom"> <div class="w3-col m3"> <p></p> </div> <div class="w3-col m6"> <h2>Contratto</h2> <p><i>Elimina il contratto, premendo su "x":</i></p> <div class="w3-col w3-center w3-margin-bottom"> <ul id="addListCN" class="w3-ul w3-card-4"> <!-- Injection JavaScript --> </ul> </div> <p id="txtRemoveList" class="w3-margin-top" style="display: none;"><i>Agiungi il contratto, premendosu "+":</i></p> <div class="w3-col w3-center w3-margin-bottom"> <ul id="removeListCN" class="w3-ul w3-card-4"> <!-- Injection JavaScript --> </ul> </div> <div class="w3-bar"> <button class="w3-button w3-left w3-dark-grey" onclick="document.querySelector(\'#tabPerCent\').remove();">&laquo; Close</button> <button class="w3-button w3-left w3-light-grey" onclick="options();">Options</button> <button class="w3-button w3-right w3-green" onclick="calcPerCent();">Next&raquo;</button> </div> </div> <div class="w3-col m3"> <p></p> </div> </div> </div> <div id="perCentTab" class="w3-container w3-padding-64" style="display: none;"> <div class="w3-row w3-margin-top"> <div class="w3-col m3"> <p></p> </div> <div class="w3-col m6"> <div id="listCnLCL" class="w3-center"> <!-- Injection JavaScript --> </div> <style> @media print { .noStamp { opacity: 0; display: none; } } </style> <div class="w3-bar noStamp"><button class="w3-button w3-left w3-dark-grey" onclick="clearAll();">&laquo; Back</button><button class="w3-button w3-right w3-green" onclick="Print();">Print&raquo;</button></div> </div> <div class="w3-col m3"> <p></p> </div> </div> </div> <div id="optionsTab" class="w3-container" style="display: none;"> <div class="w3-row w3-margin-top w3-margin-bottom"> <div class="w3-col m3"> <p></p> </div> <div class="w3-col m6"> <div id="optionsList" class="w3-col w3-margin-bottom"> <!-- Injection JavaScript --> </div> <div class="w3-bar noStamp"><button class="w3-button w3-left w3-dark-grey" onclick="clearAll();">&laquo; Back</button></div> <div class="w3-col m3"> <p></p> </div> </div> </div> <div id="modalEditLCL" class="w3-modal"> <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px"> <div class="w3-center"><br> <span onclick="closeModaLCL();" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span> </div> <div class="w3-container"> <h2 id="TEXTlabelLCL"> <!-- Injection JavaScript --> </h2> <div class="w3-section"> <label><b>Label</b></label> <input id="labelLCL" class="w3-input w3-border w3-margin-bottom" type="text" value="Comune" required> </div> <div class="w3-section"> <label><b>Tipo LCL</b></label> <select id="typeLCL" class="w3-select w3-border" style="height: 40px;" name="option"> <!--<option value="" disabled selected>Choose your option</option>--> <option value="MF">MF-TF</option> <option value="TF">TF-15/30</option> <option value="MF-R">MF-TF Ripassi</option> <option value="TF-R">TF-15/30 Ripassi</option> <option value="M2">M2</option> </select> </div> <div class="w3-section"> <label><b>Data fine</b></label> <input id="dateLCL" class="w3-input w3-border w3-margin-bottom" type="date" value="1998-08-08" required> </div> </div> <div class="w3-container w3-border-top w3-padding-16 w3-light-grey"> <div class="w3-bar noStamp"><button class="w3-button w3-left w3-red" onclick="closeModaLCL();">Cancel</button><button class="w3-button w3-right w3-green" id="ModalButtonSaveLCL">Save</button> </div> </div> </div> </div> </div> </div>';
         document.body.innerHTML = body + document.body.innerHTML;
 
         load();
@@ -66,7 +66,7 @@
             divObject.classList.add("w3-containery");
             divObject.classList.add("w3-light-grey");
             divObject.classList.add("w3-card-4");
-            divObject.innerHTML = '<h2>' + CnList[i].id + '</h2><table id="lclPerCent" class="w3-table-all w3-hoverable w3-margin-bottom"><thead><tr class="w3-green"><th>LCL</th><th>CON</th><th>AVV</th><th>TOT</th><th>%</th><th>92%</th><th>96%</th></tr></thead><!-- Injection JavaScript --></table>';
+            divObject.innerHTML = '<h2>' + CnList[i].id + '</h2><table id="lclPerCent" class="w3-table-all w3-hoverable w3-margin-bottom"><thead><tr class="w3-green"><th>Label</th><th>LCL</th><th>Data scadenza</th><th>CON</th><th>AVV</th><th>TOT</th><th>%</th><th>92%</th><th>96%</th></tr></thead><!-- Injection JavaScript --></table>';
 
             var Cn = JSON.parse(localStorage.getItem("PerCent"));
             Cn.sort(function (a, b) {
@@ -82,14 +82,45 @@
                     if (sti92 <= 0) sti92 = "OK";
                     if (sti96 <= 0) sti96 = "OK";
 
-                    const diffTime = Math.abs(new Date(Cn[j].Date) - new Date());
-                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
-                    var dataHtml = '<i class="w3-tiny noStamp"> (update ' + diffDays + ' day ago)</i>';
-                    if (diffDays <= 0) {
-                        var time = new Date(Cn[j].Date).toLocaleTimeString();
-                        dataHtml = '<i class="w3-tiny noStamp"> (update ' + time + ')</i>';
+                    var typeLCL = "NaN";
+                    switch (Cn[j].Type) {
+                        case "M2":
+                            typeLCL = "M2";
+                            break;
+                        case "MF-R":
+                            typeLCL = "MF-TF Ripassi";
+                            break;
+                        case "TF-R":
+                            typeLCL = "TF-15/30 Ripassi";
+                            break;
+                        case "MF":
+                            typeLCL = "MF-TF";
+                            break;
+                        case "TF":
+                            typeLCL = "TF-15/30";
+                            break;
+                        default:
+                            break;
                     }
-                    row.innerHTML = "<td>" + Cn[j].LCL + dataHtml + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td>" + sti92 + "</td>" + "<td>" + sti96 + "</td>";
+                    var typeHtml = "";
+                    if (typeLCL != "NaN") {
+                        typeHtml = '<i class="w3-tiny"> (' + typeLCL + ')</i>';
+                    }
+
+                    function convertDate(inputFormat) {
+                        function pad(s) { return (s < 10) ? '0' + s : s; }
+                        var d = new Date(inputFormat)
+                        return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/')
+                    }
+
+                    const diffTime = Math.abs(new Date() - new Date(Cn[j].DateF));
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    var dataHtml = "";
+                    if (diffDays > 0) {
+                        dataHtml = '<i class="w3-tiny noStamp">' + diffDays + 'gg</i>';
+                    }
+
+                    row.innerHTML = "<td>" + Cn[j].Label + "</td>" + "<td>" + Cn[j].LCL + typeHtml + "</td>" + "<td>" + convertDate(Cn[j].DateF) + dataHtml + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td>" + sti92 + "</td>" + "<td>" + sti96 + "</td>";
                     divObject.querySelector("#lclPerCent").appendChild(row);
                 }
             }
@@ -168,11 +199,13 @@
                     if (document.querySelector("#optionsList").children[j].id == (Cn[i].CN + "O")) {
                         CNexist = true;
 
-                        var element = document.createElement("li");
-                        element.classList.add("w3-display-container");
-                        element.innerHTML = '<b>' + Cn[i].LCL + '</b>' + dataHtml + '<span onclick="deleteLCL(this.parentElement)"class="w3-button w3-transparent w3-display-right w3-hover-red">×</span>';
+                        var elementLI = document.createElement("li");
+                        elementLI.classList.add("w3-display-container");
+                        elementLI.id = Cn[i].LCL;
+                        elementLI.setAttribute("onclick", 'if(event.target === this) { modalEditLCL(this); }');
+                        elementLI.innerHTML = '<b>' + Cn[i].LCL + '</b>' + dataHtml + '<span onclick="deleteLCL(this.parentElement)"class="w3-button w3-transparent w3-display-right w3-hover-red">×</span>';
 
-                        document.getElementById(Cn[i].CN + "O").appendChild(element);
+                        document.getElementById(Cn[i].CN + "O").appendChild(elementLI);
                     }
                 }
 
@@ -181,7 +214,7 @@
                     element.classList.add("w3-ul");
                     element.classList.add("w3-card-4");
                     element.classList.add("w3-margin-top");
-                    element.classList.add("w3-margin-bottom");
+                    element.classList.add("w3-margin-bottom");//    onclick="if(event.target === this) { modalEditLCL(this); }"
                     element.id = Cn[i].CN + "O";
                     const diffTime = Math.abs(new Date(Cn[i].Date) - new Date());
                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
@@ -190,7 +223,7 @@
                         var time = new Date(Cn[i].Date).toLocaleTimeString();
                         dataHtml = '<i class="w3-tiny noStamp"> (update ' + time + ')</i>';
                     }
-                    element.innerHTML = '<!-- Injection JavaScript --><li><h2>' + Cn[i].CN + '</h2></li><li class="w3-display-container"><b>' + Cn[i].LCL + '</b>' + dataHtml + '<span onclick="deleteLCL(this.parentElement)"class="w3-button w3-transparent w3-display-right w3-hover-red">×</span></li>';
+                    element.innerHTML = '<!-- Injection JavaScript --><li><h2>' + Cn[i].CN + '</h2></li><li class="w3-display-container" id="' + Cn[i].LCL + '" onclick="if(event.target === this) { modalEditLCL(this); }"><b>' + Cn[i].LCL + '</b>' + dataHtml + '<span onclick="deleteLCL(this.parentElement)"class="w3-button w3-transparent w3-display-right w3-hover-red">×</span></li>';
                     document.querySelector("#optionsList").appendChild(element);
                 }
             }
@@ -218,6 +251,61 @@
         } else {
             document.querySelector("#txtRemoveList").style.display = "none";
         }
+    }
+
+    window.dateToYMD = function (date) {
+        var d = date.getDate();
+        var m = date.getMonth() + 1; //Month from 0 to 11
+        var y = date.getFullYear();
+        return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+    }
+
+    window.varElementIDlcl;
+    window.modalEditLCL = function (element) {
+        var Cn = JSON.parse(localStorage.getItem("PerCent"));
+
+        Cn.sort(function (a, b) {
+            return a.LCL - b.LCL;
+        });
+
+        for (let i = 0; i < Cn.length; i++) {
+            if (Cn[i].LCL == element.id) {
+                document.querySelector("#TEXTlabelLCL").innerHTML = element.id;
+                document.querySelector("#labelLCL").value = Cn[i].Label;
+                document.querySelector("#typeLCL").value = Cn[i].Type;
+                document.querySelector("#dateLCL").value = dateToYMD(new Date(Cn[i].DateF));
+
+                var elementIDlcl = document.querySelector('#ModalButtonSaveLCL');
+                elementIDlcl.addEventListener('click', saveCalcTableLCL, false);
+                elementIDlcl.myParam = element;
+                window.varElementIDlcl = elementIDlcl;
+            }
+        }
+
+        document.querySelector("#modalEditLCL").style.display = "block";
+    }
+
+
+    window.saveCalcTableLCL = function (evt) {
+        if (localStorage.getItem("PerCent") != null) {
+            var Cn = JSON.parse(localStorage.getItem("PerCent"));
+            for (let i = 0; i < Cn.length; i++) {
+                if (Cn[i].LCL == evt.currentTarget.myParam.id) {
+                    Cn[i].Label = document.querySelector("#labelLCL").value;
+                    Cn[i].Type = document.querySelector("#typeLCL").value;
+                    Cn[i].DateF = new Date(document.querySelector("#dateLCL").value);
+                }
+            }
+        }
+
+        localStorage.setItem("PerCent", JSON.stringify(Cn));
+
+        document.querySelector("#modalEditLCL").style.display = "none";
+        window.varElementIDlcl.removeEventListener('click', saveCalcTableLCL);
+    }
+
+    window.closeModaLCL = function () {
+        document.querySelector("#modalEditLCL").style.display = "none";
     }
 
     window.Print = function () {
@@ -288,7 +376,10 @@
                             "Date": new Date(),
                             "TOT": TOT,
                             "CON": CON,
-                            "AV": AV
+                            "AV": AV,
+                            "Label": "Comune",
+                            "DateF": new Date(),
+                            "Type": "MF",
                         }];
 
 
@@ -330,7 +421,10 @@
                                     "Date": new Date(),
                                     "TOT": TOT,
                                     "CON": CON,
-                                    "AV": AV
+                                    "AV": AV,
+                                    "Label": new Date().toLocaleString('default', { month: 'long' }),
+                                    "DateF": new Date(),
+                                    "Type": "-",
                                 };
                                 Cn.push(lclNew)
                                 localStorage.setItem("PerCent", JSON.stringify(Cn));
