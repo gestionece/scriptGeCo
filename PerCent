@@ -102,56 +102,56 @@
 
     window.deleteLCL = function (element) {
         if (localStorage.getItem("PerCent")) {
-                    var Cn = JSON.parse(localStorage.getItem("PerCent"));
-                    for (let i = 0; i < Cn.length; i++) {
-                        if (Cn[i].LCL == element.firstChild.textContent) {
-                            Cn.splice(i, 1);
-                            if (element.parentNode.childElementCount <= 2) {
-                                element.parentNode.remove();
-                                document.querySelector("#addListCN").innerHTML = "";
-                                document.querySelector("#removeListCN").innerHTML = "";
+            var Cn = JSON.parse(localStorage.getItem("PerCent"));
+            for (let i = 0; i < Cn.length; i++) {
+                if (Cn[i].LCL == element.firstChild.textContent) {
+                    Cn.splice(i, 1);
+                    if (element.parentNode.childElementCount <= 2) {
+                        element.parentNode.remove();
+                        document.querySelector("#addListCN").innerHTML = "";
+                        document.querySelector("#removeListCN").innerHTML = "";
 
-                                if (localStorage.getItem("PerCent")) {
-                                    var CnLoad = JSON.parse(localStorage.getItem("PerCent"));
+                        if (localStorage.getItem("PerCent")) {
+                            var CnLoad = JSON.parse(localStorage.getItem("PerCent"));
 
-                                    if (Cn.length > 0) {
-                                        for (let i = 0; i < CnLoad.length; i++) {
-                                            var CNexist = false;
-                                            for (let j = 0; j < document.querySelector("#addListCN").childElementCount; j++) {
-                                                if (document.querySelector("#addListCN").children[j].id == CnLoad[i].CN) {
-                                                    CNexist = true;
-                                                }
-                                            }
-
-                                            if (CNexist == false) {
-                                                var elementLoad = document.createElement("li");
-                                                elementLoad.classList.add("w3-display-container"); //<i class="w3-tiny"> (update 3 day ago)</i>
-                                                elementLoad.id = CnLoad[i].CN;
-                                                elementLoad.innerHTML = '<b>' + CnLoad[i].CN + '</b><span onclick="changeCN(this.parentElement)" class="w3-button w3-transparent w3-display-right">&times;</span>';
-                                                document.querySelector("#addListCN").appendChild(elementLoad);
-                                            }
+                            if (Cn.length > 0) {
+                                for (let i = 0; i < CnLoad.length; i++) {
+                                    var CNexist = false;
+                                    for (let j = 0; j < document.querySelector("#addListCN").childElementCount; j++) {
+                                        if (document.querySelector("#addListCN").children[j].id == CnLoad[i].CN) {
+                                            CNexist = true;
                                         }
+                                    }
+
+                                    if (CNexist == false) {
+                                        var elementLoad = document.createElement("li");
+                                        elementLoad.classList.add("w3-display-container"); //<i class="w3-tiny"> (update 3 day ago)</i>
+                                        elementLoad.id = CnLoad[i].CN;
+                                        elementLoad.innerHTML = '<b>' + CnLoad[i].CN + '</b><span onclick="changeCN(this.parentElement)" class="w3-button w3-transparent w3-display-right">&times;</span>';
+                                        document.querySelector("#addListCN").appendChild(elementLoad);
                                     }
                                 }
                             }
-                            element.remove();
-
-                            if (document.querySelector("#optionsList").childElementCount <= 0) {
-                                document.querySelector("#listCnLCL").innerHTML = "";
-                                document.querySelector("#optionsList").innerHTML = "";
-                                document.querySelector("#addListCN").innerHTML = "";
-                                document.querySelector("#removeListCN").innerHTML = "";
-                                document.querySelector("#pharStartPage").textContent = "Ehii che fai";
-                                document.querySelector("#txtStartPage").innerHTML = "<i>Perché elimini tutto? Non hai altro da fare</i>";
-                                document.querySelector("#perCentTab").style.display = "none";
-                                document.querySelector("#optionsTab").style.display = "none";
-                                document.querySelector("#selectCN").style.display = "none";
-                                document.querySelector("#startPage").style.display = "block";
-                            }
                         }
                     }
-                    localStorage.setItem("PerCent", JSON.stringify(Cn));
+                    element.remove();
+
+                    if (document.querySelector("#optionsList").childElementCount <= 0) {
+                        document.querySelector("#listCnLCL").innerHTML = "";
+                        document.querySelector("#optionsList").innerHTML = "";
+                        document.querySelector("#addListCN").innerHTML = "";
+                        document.querySelector("#removeListCN").innerHTML = "";
+                        document.querySelector("#pharStartPage").textContent = "Ehii che fai";
+                        document.querySelector("#txtStartPage").innerHTML = "<i>Perché elimini tutto? Non hai altro da fare</i>";
+                        document.querySelector("#perCentTab").style.display = "none";
+                        document.querySelector("#optionsTab").style.display = "none";
+                        document.querySelector("#selectCN").style.display = "none";
+                        document.querySelector("#startPage").style.display = "block";
+                    }
                 }
+            }
+            localStorage.setItem("PerCent", JSON.stringify(Cn));
+        }
     }
 
     window.options = function () {
@@ -307,17 +307,18 @@
                                 if (Cn[i].LCL == LCL) {
                                     LCLexist = true;
 
-                                    if (Cn[i].TOT != TOT || Cn[i].CON != CON || Cn[i].AV != AV) {
+                                    var sumT = Number(CON) + Number(AV);
+                                    if(sumT != Number(TOT)) {
                                         Cn[i].TOT = TOT;
+                                    }
+                                    if (Cn[i].CON != CON || Cn[i].AV != AV) {
                                         Cn[i].CON = CON;
                                         Cn[i].AV = AV;
-
-                                        Cn[i].Date = new Date();
-
-                                        localStorage.setItem("PerCent", JSON.stringify(Cn));
-                                        //alert("update CONTRATTO: " + CONTRATTO + "\n" + "update LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
-                                        console.log("[!] update LCL");
                                     }
+                                    Cn[i].Date = new Date();
+                                    localStorage.setItem("PerCent", JSON.stringify(Cn));
+                                    //alert("update CONTRATTO: " + CONTRATTO + "\n" + "update LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
+                                    console.log("[!] update LCL");
 
                                 }
                             }
