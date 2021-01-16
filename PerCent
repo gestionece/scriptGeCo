@@ -193,6 +193,9 @@
                 return a.LCL - b.LCL;
             });
 
+            var dataHtml = "";
+            var time = "";
+
             for (let i = 0; i < Cn.length; i++) {
                 var CNexist = false;
                 for (let j = 0; j < document.querySelector("#optionsList").childElementCount; j++) {
@@ -203,6 +206,15 @@
                         elementLI.classList.add("w3-display-container");
                         elementLI.id = Cn[i].LCL;
                         elementLI.setAttribute("onclick", 'if(event.target === this) { modalEditLCL(this); }');
+
+                        const diffTime = Math.abs(new Date(Cn[i].Date) - new Date());
+                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+                        dataHtml = '<i class="w3-tiny noStamp"> (update ' + diffDays + ' day ago)</i>';
+                        if (diffDays <= 0) {
+                            time = new Date(Cn[i].Date).toLocaleTimeString();
+                            dataHtml = '<i class="w3-tiny noStamp"> (update ' + time + ')</i>';
+                        }
+
                         elementLI.innerHTML = '<b>' + Cn[i].LCL + '</b>' + dataHtml + '<span onclick="deleteLCL(this.parentElement)"class="w3-button w3-transparent w3-display-right w3-hover-red">×</span>';
 
                         document.getElementById(Cn[i].CN + "O").appendChild(elementLI);
@@ -218,9 +230,9 @@
                     element.id = Cn[i].CN + "O";
                     const diffTime = Math.abs(new Date(Cn[i].Date) - new Date());
                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
-                    var dataHtml = '<i class="w3-tiny noStamp"> (update ' + diffDays + ' day ago)</i>';
+                    dataHtml = '<i class="w3-tiny noStamp"> (update ' + diffDays + ' day ago)</i>';
                     if (diffDays <= 0) {
-                        var time = new Date(Cn[i].Date).toLocaleTimeString();
+                        time = new Date(Cn[i].Date).toLocaleTimeString();
                         dataHtml = '<i class="w3-tiny noStamp"> (update ' + time + ')</i>';
                     }
                     element.innerHTML = '<!-- Injection JavaScript --><li><h2>' + Cn[i].CN + '</h2></li><li class="w3-display-container" id="' + Cn[i].LCL + '" onclick="if(event.target === this) { modalEditLCL(this); }"><b>' + Cn[i].LCL + '</b>' + dataHtml + '<span onclick="deleteLCL(this.parentElement)"class="w3-button w3-transparent w3-display-right w3-hover-red">×</span></li>';
@@ -402,13 +414,12 @@
                                     if(sumT != Number(TOT)) {
                                         Cn[i].TOT = TOT;
                                     }
-                                    if (Cn[i].CON != CON || Cn[i].AV != AV) {
-                                        Cn[i].CON = CON;
-                                        Cn[i].AV = AV;
-                                    }
+                                    Cn[i].CON = CON;
+                                    Cn[i].AV = AV;
                                     Cn[i].Date = new Date();
+
                                     localStorage.setItem("PerCent", JSON.stringify(Cn));
-                                    //alert("update CONTRATTO: " + CONTRATTO + "\n" + "update LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
+                                    alert("update CONTRATTO: " + CONTRATTO + "\n" + "update LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
                                     console.log("[!] update LCL");
 
                                 }
