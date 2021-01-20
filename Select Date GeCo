@@ -39,10 +39,12 @@
             day = '' + d.getDate(),
             year = d.getFullYear();
 
-        if (month.length < 2)
+        if (month.length < 2) {
             month = '0' + month;
-        if (day.length < 2)
+        }
+        if (day.length < 2) {
             day = '0' + day;
+        }
 
         return [year, month, day].join('-');
     }
@@ -63,21 +65,23 @@
         /*footer: true,*/
         onSelect: function (start, end) {
             if(start != null && end != null) {
-                var urlQuery = "";
-                if(location.search != "") {
-                    location.search.substr(1).split("&").forEach(
-                        function(item) {
-                            if (item.split("=")[0] != "data_assegnazione__gte" && item.split("=")[0] != "data_assegnazione__lt" && item.split("=")[0] != "data_assegnazione__day" && item.split("=")[0] != "data_assegnazione__month" && item.split("=")[0] != "data_assegnazione__year" ) {
-                                urlQuery += "&" + item.split("=")[0] + "=" + item.split("=")[1];
-                            }
-                        });
+                if ( (typeof end._i) == "number") {
+                    var urlQuery = "";
+                    if(location.search != "") {
+                        location.search.substr(1).split("&").forEach(
+                            function(item) {
+                                if (item.split("=")[0] != "data_assegnazione__gte" && item.split("=")[0] != "data_assegnazione__lt" && item.split("=")[0] != "data_assegnazione__day" && item.split("=")[0] != "data_assegnazione__month" && item.split("=")[0] != "data_assegnazione__year" ) {
+                                    urlQuery += "&" + item.split("=")[0] + "=" + item.split("=")[1];
+                                }
+                            });
+                    }
+
+                    var tomorrow = new Date(end.format('YYYY-MM-DD'));
+                    tomorrow = tomorrow.setDate(tomorrow.getDate() + 1)
+                    var url = window.location.origin + window.location.pathname + "?data_assegnazione__gte=" + start.format('YYYY-MM-DD') + "&data_assegnazione__lt=" + window.formatDate(tomorrow) + urlQuery;
+                    //console.log(url);
+                    window.location.replace(url);
                 }
-
-                var tomorrow = end._i + 86400001;
-                var url = window.location.origin + window.location.pathname + "?data_assegnazione__gte=" + start.format('YYYY-MM-DD') + "&data_assegnazione__lt=" + window.formatDate(tomorrow) + urlQuery;
-                //console.log(url);
-                window.location.replace(url);
-
             }
         },
         onMonthsChange: function (select) {
@@ -100,5 +104,7 @@
     }
 
 })();
+
+
 
 
