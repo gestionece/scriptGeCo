@@ -68,9 +68,16 @@
                 buttons: {
                     prev: '<',
                     next: '>',
-                }
+                    close: '×',
+                    reset: 'Clear',
+                    apply: 'Apply'
+                },
+                tooltip: {
+                    one: 'giorno',
+                    other: 'giorni'
+                },
             },
-            /*footer: true,*/
+            footer: true,
             onSelect: function (start, end) {
                 if(start != null && end != null) {
                     if ( (typeof end._i) == "number") {
@@ -110,6 +117,25 @@
             yesterday = yesterday.setDate(yesterday.getDate() - 1);
             window.lightpick.setDateRange(queryDict.data_assegnazione__gte, window.formatDate(yesterday), true);
             window.lightpick.gotoDate(new Date(queryDict.data_assegnazione__gte));
+        }
+
+        window.elementID = document.querySelector("#changelist-filter > div:nth-child(2) > div > section > div > div.lightpick__footer > button.lightpick__reset-action");
+        window.elementID.addEventListener('click', saveCalcTable, false);
+        function saveCalcTable(evt) {
+            var urlQuery = "";
+            if(location.search != "") {
+                location.search.substr(1).split("&").forEach(
+                    function(item) {
+                        if (item.split("=")[0] != "data_assegnazione__gte" && item.split("=")[0] != "data_assegnazione__lt" && item.split("=")[0] != "data_assegnazione__day" && item.split("=")[0] != "data_assegnazione__month" && item.split("=")[0] != "data_assegnazione__year" ) {
+                            urlQuery += "&" + item.split("=")[0] + "=" + item.split("=")[1];
+                        }
+                    });
+            }
+
+            var url = window.location.origin + window.location.pathname + "?" + urlQuery;
+            //console.log(url);
+            window.location.replace(url);
+            window.elementID.removeEventListener('click', saveCalcTable);
         }
     }
 })();
