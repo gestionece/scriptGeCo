@@ -47,7 +47,11 @@
             return [year, month, day].join('-');
         }
 
-        //Load Calendar  //2021-01-20&data_assegnazione__lt=2021-01-21
+        //Load Calendar
+        //https://wakirin.github.io/Lightpick/#configuration
+        //https://www.npmjs.com/package/lightpick
+        //https://wakirin.github.io/Litepicker/
+        //https://github.com/wakirin/Litepicker
         window.lightpick = new window.Lightpick({
             field: document.getElementById('datepicker'),
             singleDate: false,
@@ -103,8 +107,9 @@
             });
         if (queryDict.data_assegnazione__gte != undefined && queryDict.data_assegnazione__lt != undefined) {
             var yesterday = new Date(queryDict.data_assegnazione__lt);
-            yesterday = yesterday.setDate(yesterday.getDate() - 1)
-            window.lightpick.setDateRange(queryDict.data_assegnazione__gte,window.formatDate(yesterday), true)
+            yesterday = yesterday.setDate(yesterday.getDate() - 1);
+            window.lightpick.setDateRange(queryDict.data_assegnazione__gte, window.formatDate(yesterday), true);
+            window.lightpick.gotoDate(new Date(queryDict.data_assegnazione__gte));
         }
     }
 })();
