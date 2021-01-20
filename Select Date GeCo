@@ -33,8 +33,22 @@
     script.innerHTML = window.httpGet('https://raw.githubusercontent.com/gestionece/calendar/main/lightpick.js');
     document.body.appendChild(script);
 
+    window.formatDate = function (date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
     //Load Calendar  //2021-01-20&data_assegnazione__lt=2021-01-21
-    new Lightpick({
+    window.lightpick = new Lightpick({
         field: document.getElementById('datepicker'),
         singleDate: false,
         selectForward: true,
@@ -48,41 +62,17 @@
         },
         /*footer: true,*/
         onSelect: function (start, end) {
-            function formatDate(date) {
-                var d = new Date(date),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + d.getDate(),
-                    year = d.getFullYear();
-
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-
-                return [year, month, day].join('-');
-            }
-
             if(start != null && end != null) {
-
-
-                var queryDict = {};
-                location.search.substr(1).split("&").forEach(
-                    function(item) {
-                        queryDict[item.split("=")[0]] = item.split("=")[1]
-                    });
-                console.log(queryDict.lenght);
-
                 var urlQuery = "";
                 location.search.substr(1).split("&").forEach(
                     function(item) {
                         if (item.split("=")[0] != "data_assegnazione__gte" && item.split("=")[0] != "data_assegnazione__lt" && item.split("=")[0] != "data_assegnazione__day" && item.split("=")[0] != "data_assegnazione__month" && item.split("=")[0] != "data_assegnazione__year" ) {
-                            console.log(item.split("=")[0]);
                             urlQuery +=  "&" + item.split("=")[0] + "=" + item.split("=")[1];
                         }
                     });
 
                 var tomorrow = end._i + 86400001;
-                var url = window.location.origin + window.location.pathname + "?data_assegnazione__gte=" + start.format('YYYY-MM-DD') + "&data_assegnazione__lt=" + formatDate(tomorrow) + urlQuery;
+                var url = window.location.origin + window.location.pathname + "?data_assegnazione__gte=" + start.format('YYYY-MM-DD') + "&data_assegnazione__lt=" + window.formatDate(tomorrow) + urlQuery;
                 //console.log(url);
                 window.location.replace(url);
 
@@ -95,6 +85,17 @@
             console.log(select);
         },
     });
+
+    var queryDict = {};
+    location.search.substr(1).split("&").forEach(
+        function(item) {
+            queryDict[item.split("=")[0]] = item.split("=")[1]
+        });
+    if (queryDict.data_assegnazione__gte != undefined && queryDict.data_assegnazione__lt != undefined) {
+        var yesterday = new Date(queryDict.data_assegnazione__lt);
+        yesterday = yesterday.setDate(yesterday.getDate() - 1)
+        window.lightpick.setDateRange(queryDict.data_assegnazione__gte,window.formatDate(yesterday), true)
+    }
 
 })();
 
