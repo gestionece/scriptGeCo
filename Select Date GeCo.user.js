@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Select Date GeCo
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.1
+// @version      0.2
 // @description  Comodo calendario per scegliere la data
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/admin/backend/pratica/*
@@ -120,8 +120,9 @@
         }
 
         window.elementID = document.querySelector("#changelist-filter > div:nth-child(2) > div > section > div > div.lightpick__footer > button.lightpick__reset-action");
-        window.elementID.addEventListener('click', clearDate, false);
-        function clearDate(evt) {
+        window.elementID.style.cursor = "pointer";
+        window.elementID.addEventListener('click', saveCalcTable, false);
+        function saveCalcTable(evt) {
             var urlQuery = "";
             if(location.search != "") {
                 location.search.substr(1).split("&").forEach(
@@ -135,7 +136,7 @@
             var url = window.location.origin + window.location.pathname + "?" + urlQuery;
             //console.log(url);
             window.location.replace(url);
-            window.elementID.removeEventListener('click', clearDate);
+            window.elementID.removeEventListener('click', saveCalcTable);
         }
     }
 })();
