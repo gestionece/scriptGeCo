@@ -120,8 +120,8 @@
         }
 
         window.elementID = document.querySelector("#changelist-filter > div:nth-child(2) > div > section > div > div.lightpick__footer > button.lightpick__reset-action");
-        window.elementID.addEventListener('click', saveCalcTable, false);
-        function saveCalcTable(evt) {
+        window.elementID.addEventListener('click', clearDate, false);
+        function clearDate(evt) {
             var urlQuery = "";
             if(location.search != "") {
                 location.search.substr(1).split("&").forEach(
@@ -135,7 +135,7 @@
             var url = window.location.origin + window.location.pathname + "?" + urlQuery;
             //console.log(url);
             window.location.replace(url);
-            window.elementID.removeEventListener('click', saveCalcTable);
+            window.elementID.removeEventListener('click', clearDate);
         }
     }
 })();
