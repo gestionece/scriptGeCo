@@ -64,16 +64,18 @@
         onSelect: function (start, end) {
             if(start != null && end != null) {
                 var urlQuery = "";
-                location.search.substr(1).split("&").forEach(
-                    function(item) {
-                        if (item.split("=")[0] != "data_assegnazione__gte" && item.split("=")[0] != "data_assegnazione__lt" && item.split("=")[0] != "data_assegnazione__day" && item.split("=")[0] != "data_assegnazione__month" && item.split("=")[0] != "data_assegnazione__year" ) {
-                            urlQuery +=  "&" + item.split("=")[0] + "=" + item.split("=")[1];
-                        }
-                    });
+                if(location.search != "") {
+                    location.search.substr(1).split("&").forEach(
+                        function(item) {
+                            if (item.split("=")[0] != "data_assegnazione__gte" && item.split("=")[0] != "data_assegnazione__lt" && item.split("=")[0] != "data_assegnazione__day" && item.split("=")[0] != "data_assegnazione__month" && item.split("=")[0] != "data_assegnazione__year" ) {
+                                urlQuery += "&" + item.split("=")[0] + "=" + item.split("=")[1];
+                            }
+                        });
+                }
 
                 var tomorrow = end._i + 86400001;
                 var url = window.location.origin + window.location.pathname + "?data_assegnazione__gte=" + start.format('YYYY-MM-DD') + "&data_assegnazione__lt=" + window.formatDate(tomorrow) + urlQuery;
-                //console.log(url);
+                console.log(url);
                 window.location.replace(url);
 
             }
@@ -98,7 +100,5 @@
     }
 
 })();
-
-
 
 
