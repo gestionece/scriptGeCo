@@ -2,7 +2,7 @@
 // @name         Select Date GeCo
 // @namespace    https://github.com/gestionece/scriptGeCo
 // @version      0.1
-// @description  Comodo calendario per schegliere la data
+// @description  Comodo calendario per scegliere la data
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/admin/backend/pratica/*
 // @grant        none
