@@ -75,7 +75,7 @@
 
                 var tomorrow = end._i + 86400001;
                 var url = window.location.origin + window.location.pathname + "?data_assegnazione__gte=" + start.format('YYYY-MM-DD') + "&data_assegnazione__lt=" + window.formatDate(tomorrow) + urlQuery;
-                console.log(url);
+                //console.log(url);
                 window.location.replace(url);
 
             }
