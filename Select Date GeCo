@@ -48,7 +48,7 @@
         }
 
         //Load Calendar  //2021-01-20&data_assegnazione__lt=2021-01-21
-        window.lightpick = new Lightpick({
+        window.lightpick = new window.Lightpick({
             field: document.getElementById('datepicker'),
             singleDate: false,
             selectForward: true,
