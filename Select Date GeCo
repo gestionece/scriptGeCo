@@ -1,0 +1,103 @@
+// ==UserScript==
+// @name         Select Date GeCo
+// @namespace    https://github.com/gestionece/scriptGeCo
+// @version      0.1
+// @description  Comodo calendario per schegliere la data
+// @author       Ruslan Dzyuba(Trorker)
+// @match        https://geco.impresalevratti.it/admin/backend/pratica/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Your code here...
+    window.httpGet = function(theUrl) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+
+
+    var injectCalendar = document.querySelector("#changelist-filter > div:nth-child(2) > div");
+    injectCalendar.align = "center"
+    injectCalendar.innerHTML = '<input type="text" id="datepicker" class="form-control form-control-sm" style="display: none;">';
+    //injectCalendar.innerHTML = '<section class="lightpick lightpick--1-columns lightpick--inlined"><div class="lightpick__inner"><div class="lightpick__months"><section class="lightpick__month"><header class="lightpick__month-title-bar"><div class="lightpick__month-title"><select class="lightpick__select lightpick__select-months" dir="rtl"><option value="0" selected="selected">gennaio</option><option value="1">febbraio</option><option value="2">marzo</option><option value="3">aprile</option><option value="4">maggio</option><option value="5">giugno</option><option value="6">luglio</option><option value="7">agosto</option><option value="8">settembre</option><option value="9">ottobre</option><option value="10">novembre</option><option value="11">dicembre</option></select><select class="lightpick__select lightpick__select-years"><option value="2019">2019</option><option value="2020">2020</option><option value="2021" selected="selected">2021</option></select></div><div class="lightpick__toolbar"><button type="button" class="lightpick__previous-action">←</button><button type="button" class="lightpick__next-action">→</button></div></header><div class="lightpick__days-of-the-week"><div class="lightpick__day-of-the-week" title="lunedì">lun</div><div class="lightpick__day-of-the-week" title="martedì">mar</div><div class="lightpick__day-of-the-week" title="mercoledì">mer</div><div class="lightpick__day-of-the-week" title="giovedì">gio</div><div class="lightpick__day-of-the-week" title="venerdì">ven</div><div class="lightpick__day-of-the-week" title="sabato">sab</div><div class="lightpick__day-of-the-week" title="domenica">dom</div></div><div class="lightpick__days"><div class="lightpick__day is-available is-previous-month" data-time="1609165695691">28</div><div class="lightpick__day is-available is-previous-month" data-time="1609252095691">29</div><div class="lightpick__day is-available is-previous-month" data-time="1609338495691">30</div><div class="lightpick__day is-available is-previous-month" data-time="1609424895691">31</div><div class="lightpick__day is-available" data-time="1609511295691">1</div><div class="lightpick__day is-available" data-time="1609597695691">2</div><div class="lightpick__day is-available" data-time="1609684095691">3</div><div class="lightpick__day is-available" data-time="1609770495691">4</div><div class="lightpick__day is-available is-start-date is-in-range" data-time="1609856895691">5</div><div class="lightpick__day is-available is-in-range" data-time="1609943295691">6</div><div class="lightpick__day is-available is-in-range" data-time="1610029695691">7</div><div class="lightpick__day is-available is-in-range" data-time="1610116095691">8</div><div class="lightpick__day is-available is-in-range" data-time="1610202495691">9</div><div class="lightpick__day is-available is-in-range" data-time="1610288895691">10</div><div class="lightpick__day is-available is-in-range" data-time="1610375295691">11</div><div class="lightpick__day is-available is-in-range" data-time="1610461695691">12</div><div class="lightpick__day is-available is-in-range" data-time="1610548095691">13</div><div class="lightpick__day is-available is-in-range" data-time="1610634495691">14</div><div class="lightpick__day is-available is-in-range" data-time="1610720895691">15</div><div class="lightpick__day is-available is-end-date is-in-range" data-time="1610807295691">16</div><div class="lightpick__day is-available" data-time="1610893695691">17</div><div class="lightpick__day is-available" data-time="1610980095691">18</div><div class="lightpick__day is-available" data-time="1611066495691">19</div><div class="lightpick__day is-available is-today" data-time="1611152895691">20</div><div class="lightpick__day is-available" data-time="1611239295691">21</div><div class="lightpick__day is-available" data-time="1611325695691">22</div><div class="lightpick__day is-available" data-time="1611412095691">23</div><div class="lightpick__day is-available" data-time="1611498495691">24</div><div class="lightpick__day is-available" data-time="1611584895691">25</div><div class="lightpick__day is-available" data-time="1611671295691">26</div><div class="lightpick__day is-available" data-time="1611757695691">27</div><div class="lightpick__day is-available" data-time="1611844095691">28</div><div class="lightpick__day is-available" data-time="1611930495691">29</div><div class="lightpick__day is-available" data-time="1612016895691">30</div><div class="lightpick__day is-available" data-time="1612103295691">31</div></div></section></div><div class="lightpick__tooltip" style="visibility: hidden; top: 138.906px; left: 128.352px;">12 days</div><div class="lightpick__footer"><button type="button" class="lightpick__reset-action">Reset</button><div class="lightpick__footer-message"></div><button type="button" class="lightpick__apply-action">Apply</button></div></div></section>';
+
+    var style = document.createElement('style');
+    style.innerHTML = window.httpGet('https://raw.githubusercontent.com/gestionece/calendar/main/lightpick.css');
+    document.body.appendChild(style);
+
+    var script = document.createElement('script');
+    script.innerHTML = window.httpGet('https://raw.githubusercontent.com/gestionece/calendar/main/lightpick.js');
+    document.body.appendChild(script);
+
+    //Load Calendar  //2021-01-20&data_assegnazione__lt=2021-01-21
+    new Lightpick({
+        field: document.getElementById('datepicker'),
+        singleDate: false,
+        selectForward: true,
+        inline: true,
+        dropdowns: {
+            years: {
+                min: 2019,
+                max: null,
+            },
+            months: true,
+        },
+        /*footer: true,*/
+        onSelect: function (start, end) {
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+
+                return [year, month, day].join('-');
+            }
+
+            if(start != null && end != null) {
+
+
+                var queryDict = {};
+                location.search.substr(1).split("&").forEach(
+                    function(item) {
+                        queryDict[item.split("=")[0]] = item.split("=")[1]
+                    });
+                console.log(queryDict.lenght);
+
+                var urlQuery = "";
+                location.search.substr(1).split("&").forEach(
+                    function(item) {
+                        if (item.split("=")[0] != "data_assegnazione__gte" && item.split("=")[0] != "data_assegnazione__lt" && item.split("=")[0] != "data_assegnazione__day" && item.split("=")[0] != "data_assegnazione__month" && item.split("=")[0] != "data_assegnazione__year" ) {
+                            console.log(item.split("=")[0]);
+                            urlQuery +=  "&" + item.split("=")[0] + "=" + item.split("=")[1];
+                        }
+                    });
+
+                var tomorrow = end._i + 86400001;
+                var url = window.location.origin + window.location.pathname + "?data_assegnazione__gte=" + start.format('YYYY-MM-DD') + "&data_assegnazione__lt=" + formatDate(tomorrow) + urlQuery;
+                //console.log(url);
+                window.location.replace(url);
+
+            }
+        },
+        onMonthsChange: function (select) {
+            console.log(select);
+        },
+        onYearsChange: function (select) {
+            console.log(select);
+        },
+    });
+
+})();
+
+
+
+
