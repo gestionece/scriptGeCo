@@ -55,7 +55,7 @@
         window.lightpick = new window.Lightpick({
             field: document.getElementById('datepicker'),
             singleDate: false,
-            selectForward: true,
+            //selectForward: true,
             inline: true,
             dropdowns: {
                 years: {
