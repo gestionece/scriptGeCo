@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Print GeCo
+// @name         TypeCE GeCo
 // @namespace    https://github.com/gestionece/scriptGeCo
 // @version      0.3
 // @description  Toglie delle collone per simplificare la stampa
