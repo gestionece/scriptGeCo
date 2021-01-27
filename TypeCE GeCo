@@ -24,8 +24,6 @@
         if (colM2.textContent == "Fotovoltaico") {
             colType.textContent = "M2";
         }
-        console.log(colType);
-        console.log(colM2);
         colM2.style.display = "none";
     }
 
