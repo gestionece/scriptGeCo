@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Save Date GeCO
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.1
+// @version      0.2
 // @description  Salva la data dopo la assegnazione manuale
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/admin/backend/pratica/*/change/*
@@ -37,20 +37,22 @@
         var dateInput = document.querySelector("#id_data_assegnazione");
 
         var btn = document.querySelector("#content-main > ul > li:nth-child(2) > a");
-        btn.addEventListener('click', saveDate, false);
-        function saveDate(evt) {
-            let saveDate = new Date();
-            if (dateInput != null) {
-                var dateParts = dateInput.value.split("/");
-                saveDate = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
-            } else if (dateLabel != null) {
-                saveDate = new Date(translateITmonth(dateLabel.textContent));
+        if (btn.textContent == "Assegnazione manuale") {
+            btn.addEventListener('click', saveDate, false);
+            function saveDate(evt) {
+                let saveDate = new Date();
+                if (dateInput != null) {
+                    var dateParts = dateInput.value.split("/");
+                    saveDate = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+                } else if (dateLabel != null) {
+                    saveDate = new Date(translateITmonth(dateLabel.textContent));
+                }
+
+                var link = document.querySelector("#content-main > ul > li:nth-child(2) > a");
+                link.href += "#" + saveDate.getTime();
+
+                btn.removeEventListener('click', saveDate);
             }
-
-            var link = document.querySelector("#content-main > ul > li:nth-child(2) > a");
-            link.href += "#" + saveDate.getTime();
-
-            btn.removeEventListener('click', saveDate);
         }
     } else {
         var dateInsert = location.hash.substring(1);
