@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.6
+// @version      0.7
 // @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
@@ -66,7 +66,7 @@
             divObject.classList.add("w3-containery");
             divObject.classList.add("w3-light-grey");
             divObject.classList.add("w3-card-4");
-            divObject.innerHTML = '<h2>' + CnList[i].id + '</h2><table id="lclPerCent" class="w3-table-all w3-hoverable w3-margin-bottom"><thead><tr class="w3-green"><th>Label</th><th>LCL</th><th>Data scadenza</th><th>CON</th><th>AVV</th><th>TOT</th><th>%</th><th>92%</th><th>96%</th></tr></thead><!-- Injection JavaScript --></table>';
+            divObject.innerHTML = '<h2>' + CnList[i].id + '</h2><table id="lclPerCent" class="w3-table-all w3-hoverable w3-margin-bottom"><thead><tr class="w3-green"><th>Label</th><th>LCL</th><th>Data scadenza</th><th>CON</th><th>AVV</th><th>TOT</th><th>%</th><th>Fuori penale</th><th>Premio</th></tr></thead><!-- Injection JavaScript --></table>';
 
             var Cn = JSON.parse(localStorage.getItem("PerCent"));
             Cn.sort(function (a, b) {
@@ -76,32 +76,46 @@
             for (let j = 0; j < count; j++) {
                 if (Cn[j].CN == CnList[i].id) {
                     var row = document.createElement("tr");
-                    var perCent = ((Cn[j].CON * 100) / (Cn[j].TOT - Cn[j].AV)).toFixed(2);
-                    var sti92 = (((92 * (Cn[j].TOT - Cn[j].AV) / 100) - Cn[j].CON) + 1).toFixed(0);
-                    var sti96 = (((96 * (Cn[j].TOT - Cn[j].AV) / 100) - Cn[j].CON) + 1).toFixed(0);
-                    if (sti92 <= 0) sti92 = "OK";
-                    if (sti96 <= 0) sti96 = "OK";
 
                     var typeLCL = "NaN";
+                    var penalePer = 92;
+                    var premioPer = 96;
                     switch (Cn[j].Type) {
                         case "M2":
                             typeLCL = "M2";
+                            penalePer = 20;
+                            premioPer = 91;
                             break;
                         case "MF-R":
                             typeLCL = "MF-TF Ripassi";
+                            penalePer = 92;
+                            premioPer = 96;
                             break;
                         case "TF-R":
                             typeLCL = "TF-15/30 Ripassi";
+                            penalePer = 86;
+                            premioPer = 96;
                             break;
                         case "MF":
                             typeLCL = "MF-TF";
+                            penalePer = 92;
+                            premioPer = 96;
                             break;
                         case "TF":
                             typeLCL = "TF-15/30";
+                            penalePer = 86;
+                            premioPer = 96;
                             break;
                         default:
                             break;
                     }
+
+                    var perCent = ((Cn[j].CON * 100) / (Cn[j].TOT - Cn[j].AV)).toFixed(2);
+                    var sti92 = (((penalePer * (Cn[j].TOT - Cn[j].AV) / 100) - Cn[j].CON) + 1).toFixed(0);
+                    var sti96 = (((premioPer * (Cn[j].TOT - Cn[j].AV) / 100) - Cn[j].CON) + 1).toFixed(0);
+                    if (sti92 <= 0) sti92 = "OK";
+                    if (sti96 <= 0) sti96 = "OK";
+
                     var typeHtml = "";
                     if (typeLCL != "NaN") {
                         typeHtml = '<i class="w3-tiny"> (' + typeLCL + ')</i>';
@@ -120,7 +134,7 @@
                         dataHtml = '<i class="w3-tiny">' + diffDays + 'gg</i>'; //noStamp
                     }
 
-                    row.innerHTML = "<td>" + Cn[j].Label + "</td>" + "<td>" + Cn[j].LCL + typeHtml + "</td>" + "<td>" + convertDate(Cn[j].DateF) + dataHtml + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td>" + sti92 + "</td>" + "<td>" + sti96 + "</td>";
+                    row.innerHTML = "<td>" + Cn[j].Label + "</td>" + "<td>" + Cn[j].LCL + typeHtml + "</td>" + "<td>" + convertDate(Cn[j].DateF) + dataHtml + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td>" + sti92 + '<i class="w3-tiny">(' + penalePer + '%)</i>' + "</td>" + "<td>" + sti96 + '<i class="w3-tiny">(' + premioPer + '%)</i>' + "</td>";
                     divObject.querySelector("#lclPerCent").appendChild(row);
                 }
             }
@@ -419,7 +433,7 @@
                                     Cn[i].Date = new Date();
 
                                     localStorage.setItem("PerCent", JSON.stringify(Cn));
-                                    alert("update CONTRATTO: " + CONTRATTO + "\n" + "update LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
+                                    //alert("update CONTRATTO: " + CONTRATTO + "\n" + "update LCL: " + LCL + "\n" + "Percentuale LCL: " + perCent +"%" + "\n" + "Per arrivare al 92% sevono: " + sti92 + "CE");
                                     console.log("[!] update LCL");
 
                                 }
