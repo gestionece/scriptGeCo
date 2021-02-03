@@ -134,7 +134,7 @@
                         dataHtml = '<i class="w3-tiny">' + diffDays + 'gg</i>'; //noStamp
                     }
 
-                    row.innerHTML = "<td>" + Cn[j].Label + "</td>" + "<td>" + Cn[j].LCL + typeHtml + "</td>" + "<td>" + convertDate(Cn[j].DateF) + dataHtml + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td>" + sti92 + '<i class="w3-tiny">(' + penalePer + '%)</i>' + "</td>" + "<td>" + sti96 + '<i class="w3-tiny">(' + premioPer + '%)</i>' + "</td>";
+                    row.innerHTML = "<td>" + Cn[j].Label + "</td>" + "<td><b>" + Cn[j].LCL + typeHtml + "</b></td>" + "<td><b>" + convertDate(Cn[j].DateF) + "</b>" + dataHtml + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td><b>" + sti92 + '</b><i class="w3-tiny">(' + penalePer + '%)</i>' + "</td>" + "<td><b>" + sti96 + '</b><i class="w3-tiny">(' + premioPer + '%)</i>' + "</td>";
                     divObject.querySelector("#lclPerCent").appendChild(row);
                 }
             }
