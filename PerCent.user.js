@@ -83,7 +83,7 @@
                     switch (Cn[j].Type) {
                         case "M2":
                             typeLCL = "M2";
-                            penalePer = 20;
+                            penalePer = 80;
                             premioPer = 91;
                             break;
                         case "MF-R":
