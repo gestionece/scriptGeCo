@@ -335,7 +335,7 @@
     }
 
     window.Print = function () {
-        var resultList = document.querySelector("#perCentTab").innerHTML;
+        var resultList = document.querySelector("#listCnLCL").innerHTML;
 
         var a = window.open('', '', 'width=733,height=454');
         a.document.open("text/html");
