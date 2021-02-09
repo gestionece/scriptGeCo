@@ -22,7 +22,7 @@
         }
 
         var htmlObject = document.createElement('html');
-        htmlObject.innerHTML = httpGet( window.location.href + '&o=10');
+        htmlObject.innerHTML = httpGet( window.location.href + '&o=9');
         console.log(htmlObject.innerHTML);
 
         var resultList = htmlObject.querySelector("#changelist-form > div.results").innerHTML;
