@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.7
+// @version      0.8
 // @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
@@ -66,7 +66,7 @@
             divObject.classList.add("w3-containery");
             divObject.classList.add("w3-light-grey");
             divObject.classList.add("w3-card-4");
-            divObject.innerHTML = '<h2>' + CnList[i].id + '</h2><table id="lclPerCent" class="w3-table-all w3-hoverable w3-margin-bottom"><thead><tr class="w3-green"><th>Label</th><th>LCL</th><th>Data scadenza</th><th>CON</th><th>AVV</th><th>TOT</th><th>%</th><th>Fuori penale</th><th>Premio</th></tr></thead><!-- Injection JavaScript --></table>';
+            divObject.innerHTML = '<h2>' + CnList[i].id + '</h2><table id="lclPerCent" style="font-size: inherit;" class="w3-table-all w3-hoverable w3-margin-bottom"><thead><tr class="w3-green"><th>Label</th><th>LCL</th><th>Data scadenza</th><th>CON</th><th>AVV</th><th>TOT</th><th>%</th><th>Fuori penale</th><th>Premio</th></tr></thead><!-- Injection JavaScript --></table>';
 
             var Cn = JSON.parse(localStorage.getItem("PerCent"));
             Cn.sort(function (a, b) {
@@ -343,7 +343,7 @@
         a.document.write('PerCent');
         a.document.write('</title>');
         a.document.write('<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">');
-        a.document.write('<style>body{opacity: 0}@media print { body{opacity: 1}}</style>');
+        a.document.write('<style>body{opacity: 0}@media print { body{opacity: 1; width: 210mm}}</style>');
         a.document.write('</head><body style="overflow: hidden;">');
         a.document.write(resultList);
         a.document.write("</body></html>");
