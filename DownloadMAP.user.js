@@ -47,7 +47,7 @@
             var lng = htmlObject.querySelector("#pratica_form > div > fieldset:nth-child(6) > div.form-row.field-latitudine.field-longitudine > div.fieldBox.field-longitudine > div").textContent.replace(",", ".");
 
             var eneltel = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > th > a").textContent;
-            var typeCE = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-tipo_ex_misuratore").textContent;
+            var typeCE = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-tipo_ce_reso").textContent;
             var name = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-nominativo_cliente").textContent;
             var tel = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-telefono_cliente").textContent;
             var city = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-comune").textContent;
