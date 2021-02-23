@@ -23,7 +23,7 @@
 
         var htmlObject = document.createElement('html');
         htmlObject.innerHTML = httpGet( window.location.href + '&o=9');
-        console.log(htmlObject.innerHTML);
+        //console.log(htmlObject.innerHTML);
 
         var resultList = htmlObject.querySelector("#changelist-form > div.results").innerHTML;
         var nameOperators = document.querySelector("#changelist-filter > div:nth-child(4) > div > select").options[document.querySelector("#changelist-filter > div:nth-child(4) > div > select").selectedIndex].textContent;
