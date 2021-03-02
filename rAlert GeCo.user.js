@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         rAlert GeCo
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.2
+// @version      0.3
 // @description  Link diretto per Admin
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/dashboard/storico-contratti/*
@@ -22,7 +22,7 @@
     const padova = "90725a08-750e-49f4-9827-973cc5fe7562";
     const reggio = "948f6675-2421-4e7f-b969-3fae830bc9c0";
 
-    const url1 = 'https://geco.impresalevratti.it/admin/backend/reso/?data_consegna__isnull=True&o=-5.-8&pratica__contratto__id__exact=';
+    const url1 = 'https://geco.impresalevratti.it/admin/backend/reso/?data_consegna__isnull=True&o=-6.-8&pratica__contratto__id__exact=';
     const url2 = '&pratica__stato_esecuzione__exact=2';
 
     const url1c = 'https://geco.impresalevratti.it/admin/backend/contatore/?contratto__id__exact=';
@@ -75,7 +75,7 @@
                 urlc = url1c + reggio + url2c;
                 break;
             case "":
-                url = 'https://geco.impresalevratti.it/admin/backend/reso/?data_consegna__isnull=True&o=-5.-8&pratica__stato_esecuzione__exact=2';
+                url = 'https://geco.impresalevratti.it/admin/backend/reso/?data_consegna__isnull=True&o=-6.-8&pratica__stato_esecuzione__exact=2';
                 urlc = 'https://geco.impresalevratti.it/admin/backend/contatore/?stato_esecuzione__exact=0';
                 break;
         }
