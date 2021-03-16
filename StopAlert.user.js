@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         StopAlert GeCO
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.3
+// @version      0.4
 // @description  Evidenzia ultimo contatore inserito
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/dashboard/operatori/
@@ -22,7 +22,14 @@
         var time = today.getHours() + ":" + today.getMinutes();
         var operators = document.querySelector("#table-operatori > table > tbody").childElementCount - 1;
         var i;
+        var nOp = operators;
         for (i = 1; i <= operators; i++) {
+
+            if (document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-assegnate.numeric").textContent == 0) {
+                document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ")").classList.add("debug-only");
+                nOp--;
+            }
+
             if (document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-max_time_oggi.numeric") !== null) {
                 var lastTime = document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-max_time_oggi.numeric");
                 var stopS = toSeconds(time) - toSeconds(lastTime.textContent);
@@ -35,6 +42,7 @@
                 }
             }
         }
+        document.querySelector("#table-operatori > h5").textContent = " (" + nOp + ")";
     }
     start();
 })();
