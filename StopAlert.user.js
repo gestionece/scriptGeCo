@@ -22,13 +22,13 @@
         var time = today.getHours() + ":" + today.getMinutes();
         var operators = document.querySelector("#table-operatori > table > tbody").childElementCount - 1;
         var i;
-        var nOp = operators;
+        //var nOp = operators;
         for (i = 1; i <= operators; i++) {
 
-            if (document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-assegnate.numeric").textContent == 0) {
+            /*if (document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-assegnate.numeric").textContent == 0) {
                 document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ")").classList.add("debug-only");
                 nOp--;
-            }
+            }*/
 
             if (document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-max_time_oggi.numeric") !== null) {
                 var lastTime = document.querySelector("#table-operatori > table > tbody > tr:nth-child(" + i + ") > td.field-max_time_oggi.numeric");
