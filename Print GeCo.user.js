@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Print GeCo
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.6
+// @version      0.7
 // @description  Stampare le liste
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/admin/backend/pratica/?*
@@ -22,7 +22,7 @@
         }
 
         var htmlObject = document.createElement('html');
-        htmlObject.innerHTML = httpGet( window.location.href + '&o=9');
+        htmlObject.innerHTML = httpGet( window.location.href + '&o=11');
         //console.log(htmlObject.innerHTML);
 
         var resultList = htmlObject.querySelector("#changelist-form > div.results").innerHTML;
