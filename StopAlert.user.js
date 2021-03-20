@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         StopAlert GeCO
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.4
+// @version      0.5
 // @description  Evidenzia ultimo contatore inserito
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/dashboard/operatori/
