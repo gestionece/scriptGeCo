@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DownloadMAP
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.4
+// @version      0.5
 // @description  Scarica il file per creare la mappa
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/admin/backend/pratica/?*
@@ -43,8 +43,8 @@
             var idE = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.action-checkbox > input").value;
             var htmlObject = document.createElement('html');
             htmlObject.innerHTML = httpGet("https://geco.impresalevratti.it/admin/backend/pratica/" + idE + "/change/");
-            var lat = htmlObject.querySelector("#pratica_form > div > fieldset:nth-child(6) > div.form-row.field-latitudine.field-longitudine > div.fieldBox.field-latitudine > div").textContent.replace(",", ".");
-            var lng = htmlObject.querySelector("#pratica_form > div > fieldset:nth-child(6) > div.form-row.field-latitudine.field-longitudine > div.fieldBox.field-longitudine > div").textContent.replace(",", ".");
+            var lat = htmlObject.querySelector("#fieldsets-container > fieldset:nth-child(6) > div.form-row.field-latitudine.field-longitudine > div.fieldBox.field-latitudine > div").textContent.replace(",", ".");
+            var lng = htmlObject.querySelector("#fieldsets-container > fieldset:nth-child(6) > div.form-row.field-latitudine.field-longitudine > div.fieldBox.field-longitudine > div").textContent.replace(",", ".");
 
             var eneltel = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > th > a").textContent;
             var typeCE = document.querySelector("#result_list > tbody > tr:nth-child(" + i + ") > td.field-tipo_ce_reso").textContent;
