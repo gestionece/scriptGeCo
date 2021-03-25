@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PerCent
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.8
+// @version      0.9
 // @description  La percentuale delle varie LCL
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet?*
@@ -127,11 +127,15 @@
                         return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/')
                     }
 
-                    const diffTime = Math.abs(new Date() - new Date(Cn[j].DateF));
+                    const diffTime = new Date(Cn[j].DateF) - new Date();
                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                     var dataHtml = "";
-                    if (diffDays > 0) {
+                    if (diffDays > 7) {
                         dataHtml = '<i class="w3-tiny">' + diffDays + 'gg</i>'; //noStamp
+                    } else if (diffDays <= 7 && diffDays > 0) {
+                        dataHtml = '<i class="w3-tiny w3-text-red">' + diffDays + 'gg</i>'; //noStamp
+                    } else {
+                        dataHtml = '<span class="w3-text-orange">⚠</span>'; //noStamp
                     }
 
                     row.innerHTML = "<td>" + Cn[j].Label + "</td>" + "<td><b>" + Cn[j].LCL + typeHtml + "</b></td>" + "<td><b>" + convertDate(Cn[j].DateF) + "</b>" + dataHtml + "</td>" + "<td>" + Cn[j].CON + "</td>" + "<td>" + Cn[j].AV + "</td>" + "<td>" + Cn[j].TOT + "</td>" + "<td>" + perCent + "%</td>" + "<td><b>" + sti92 + '</b><i class="w3-tiny">(' + penalePer + '%)</i>' + "</td>" + "<td><b>" + sti96 + '</b><i class="w3-tiny">(' + premioPer + '%)</i>' + "</td>";
