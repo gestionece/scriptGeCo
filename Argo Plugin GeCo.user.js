@@ -17,7 +17,7 @@
         if (id != undefined) {
             var url = "https://geco.impresalevratti.it/admin/backend/pallet/" + id.value + "/export-resi/";
             window.open(url);
-            window.close();
         }
+        window.close();
     }
 })();
