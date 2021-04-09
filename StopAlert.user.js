@@ -4,7 +4,7 @@
 // @version      0.5
 // @description  Evidenzia ultimo contatore inserito
 // @author       Ruslan Dzyuba(Trorker)
-// @match        https://geco.impresalevratti.it/dashboard/operatori/
+// @match        https://geco.impresalevratti.it/dashboard/operatori/*
 // @grant        none
 // ==/UserScript==
 
