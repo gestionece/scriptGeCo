@@ -42,7 +42,7 @@
                 }
             }
         }
-        document.querySelector("#table-operatori > h5").textContent = " (" + nOp + ")";
+        //document.querySelector("#table-operatori > h5").textContent = " (" + nOp + ")";
     }
     start();
 })();
