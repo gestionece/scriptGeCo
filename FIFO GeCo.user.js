@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FIFO GeCo
 // @namespace    https://github.com/gestionece/scriptGeCo
-// @version      0.1
+// @version      0.2
 // @description  Link diretto per Admin
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://geco.impresalevratti.it/dashboard/fifo/*/
@@ -23,6 +23,16 @@
     const padova = "contratto__id__exact=90725a08-750e-49f4-9827-973cc5fe7562";
     const reggio = "contratto__id__exact=948f6675-2421-4e7f-b969-3fae830bc9c0";
 
+    const parmaPDI = "3D10000027";
+    const ferraraPDI = "3C10000027";
+    const firenzePDI = "3B10000027";
+    const modenaPDI = "3A10000027";
+    const rovigoPDI = "2D10000027";
+    const vicenzaPDI = "2E10000027";
+    const mantovaPDI = "2G10000027";
+    const padovaPDI = "2F10000027";
+    const reggioPDI = "3E10000027";
+
     const MF = "tipo_ce_nuovo__exact=0";
     const TF = "tipo_ce_nuovo__exact=1";
 
@@ -41,37 +51,50 @@
         let url = "https://geco.impresalevratti.it/admin/backend/contatore/?";
         var tURL;
 
+        var PDI = "NaN";
+
         switch (nContratto) {
             case "8400149083":
                 url += parma;
+                PDI = parma;
                 break;
             case "8400150707":
                 url += ferrara;
+                PDI = ferraraPDI;
                 break;
             case "8400141787":
                 url += firenze;
+                PDI = firenzePDI;
                 break;
             case "8400124337":
                 url += modena;
+                PDI = modenaPDI;
                 break;
             case "8400118979":
                 url += rovigo;
+                PDI = rovigoPDI;
                 break;
             case "8400141790":
                 url += vicenza;
+                PDI = vicenzaPDI;
                 break;
             case "8400149736":
                 url += mantova;
+                PDI = mantovaPDI;
                 break;
             case "8400149816":
                 url += padova;
+                PDI = padovaPDI;
                 break;
             case "8400151041":
                 url += reggio;
+                PDI = reggioPDI;
                 break;
             case "":
                 break;
         }
+
+        document.querySelector("#table-contratti > tbody > tr:nth-child(" + i + ") > td.field-codice.bold").setAttribute('title', PDI);
 
         if (tipoCE == "MF") {// le date ?data_consegna__day=17&data_consegna__month=3&data_consegna__year=2021
             url = url + "&" + MF;
