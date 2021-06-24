@@ -56,7 +56,7 @@
         switch (nContratto) {
             case "8400149083":
                 url += parma;
-                PDI = parma;
+                PDI = parmaPDI;
                 break;
             case "8400150707":
                 url += ferrara;
